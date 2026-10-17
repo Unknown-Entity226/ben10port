@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'BadaBoom BB';
+  src: url('../assets/font/BADABB__.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -19,6 +27,14 @@
   --muted: #80968a;
   --faint: #52675a;
   --mono: 'DM Mono', monospace;
+  --font-heading: 'BadaBoom BB', 'Space Grotesk', sans-serif;
+}
+
+h1,
+h2 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  letter-spacing: .02em;
 }
 
 * {
@@ -37,6 +53,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
+  font-size: 16px;
 }
 
 button,
@@ -196,7 +213,7 @@ a {
   align-items: center;
   justify-content: space-between;
   color: #607669;
-  font-size: 10px;
+  font-size: 13.5px;
 }
 
 .brand-mark {
@@ -204,7 +221,7 @@ a {
   align-items: center;
   gap: 9px;
   color: var(--text);
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 500;
   letter-spacing: .14em;
 }
@@ -225,7 +242,7 @@ a {
   background: transparent;
   color: #91a99a;
   cursor: pointer;
-  font-size: 10px;
+  font-size: 13.5px;
   letter-spacing: .11em;
   text-transform: uppercase;
 }
@@ -321,7 +338,7 @@ a {
 
 .cosmic-core span {
   color: #d3ffe5;
-  font-size: 30px;
+  font-size: 36px;
   font-weight: 300;
   transform: rotate(-45deg);
   text-shadow: 0 0 20px #a5ffca;
@@ -354,15 +371,16 @@ a {
 .intro-overline {
   margin: 0 0 11px;
   color: var(--green);
-  font-size: 10px;
+  font-size: 13.5px;
 }
 
 .intro-center h1 {
   margin: 0;
-  font-size: clamp(46px, 7vw, 88px);
-  font-weight: 500;
-  letter-spacing: -.075em;
-  line-height: .98;
+  font-family: var(--font-heading);
+  font-size: clamp(56px, 9vw, 108px);
+  font-weight: 400;
+  letter-spacing: .02em;
+  line-height: 1.05;
 }
 
 .intro-center h1 span {
@@ -373,7 +391,7 @@ a {
 .intro-copy {
   margin: 19px 0 0;
   color: #9aaea1;
-  font-size: 15px;
+  font-size: 19px;
 }
 
 .intro-bottom {
@@ -382,7 +400,7 @@ a {
   grid-template-columns: 1fr auto;
   gap: 12px 20px;
   color: #607669;
-  font-size: 9px;
+  font-size: 12.5px;
 }
 
 .intro-progress {
@@ -415,7 +433,7 @@ a {
   background: none;
   color: #a7b9ac;
   cursor: pointer;
-  font-size: 10px;
+  font-size: 13.5px;
 }
 
 /* Navigation and Omnitrix */
@@ -479,7 +497,7 @@ a {
 }
 
 .brand .brand-mark {
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .brand__os {
@@ -488,7 +506,7 @@ a {
 
 .brand-sub {
   color: #627769;
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 .topbar-status {
@@ -496,7 +514,7 @@ a {
   align-items: center;
   gap: 9px;
   color: #7e9384;
-  font-size: 9px;
+  font-size: 12.5px;
 }
 
 .topbar-status__divider {
@@ -524,7 +542,7 @@ a {
   justify-content: space-between;
   padding: 29px 18px 17px 0;
   color: #687f70;
-  font-size: 9px;
+  font-size: 12.5px;
 }
 
 .section-nav {
@@ -545,7 +563,7 @@ a {
   color: #789082;
   cursor: pointer;
   text-align: left;
-  font-size: 12px;
+  font-size: 16px;
   transition: color .2s, background .2s, border .2s;
 }
 
@@ -590,13 +608,13 @@ a {
   margin-top: auto;
   padding: 20px 0 26px;
   color: #607568;
-  font-size: 8px;
+  font-size: 11.5px;
   line-height: 1.6;
 }
 
 .rail-crosshair {
   color: var(--green);
-  font-size: 20px;
+  font-size: 25px;
 }
 
 .rail-bottom__code {
@@ -622,7 +640,7 @@ a {
 .eyebrow {
   display: inline-block;
   color: #789282;
-  font-size: 9px;
+  font-size: 12.5px;
   line-height: 1.5;
 }
 
@@ -633,9 +651,10 @@ a {
 
 .selector-heading h1 {
   margin: 9px 0 5px;
-  font-size: clamp(30px, 3vw, 42px);
-  font-weight: 500;
-  letter-spacing: -.06em;
+  font-family: var(--font-heading);
+  font-size: clamp(38px, 4vw, 52px);
+  font-weight: 400;
+  letter-spacing: .02em;
 }
 
 .selector-heading h1 span {
@@ -645,7 +664,7 @@ a {
 .selector-heading p {
   margin: 0;
   color: #819488;
-  font-size: 13px;
+  font-size: 17px;
 }
 
 .heading-stamp {
@@ -656,7 +675,7 @@ a {
   padding: 10px 12px;
   color: var(--green-dim);
   font-family: var(--mono);
-  font-size: 8px;
+  font-size: 11.5px;
   letter-spacing: .12em;
   line-height: 1.5;
 }
@@ -707,7 +726,7 @@ a {
   gap: 9px;
   padding-top: 5px;
   color: #70907b;
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 .projection-kicker .live-dot {
@@ -786,7 +805,7 @@ a {
   display: flex;
   justify-content: space-between;
   color: #779181;
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 .holo-card__top span:last-child {
@@ -807,15 +826,16 @@ a {
 
 .holo-card__name {
   margin-top: 10px;
-  font-size: 25px;
-  font-weight: 500;
-  letter-spacing: -.05em;
+  font-family: var(--font-heading);
+  font-size: 33px;
+  font-weight: 400;
+  letter-spacing: .03em;
 }
 
 .holo-card__summary {
   margin-top: 4px;
   color: #91a397;
-  font-size: 11px;
+  font-size: 15px;
 }
 
 .holo-card__bottom {
@@ -830,14 +850,14 @@ a {
 .holo-card__metric {
   color: var(--card-accent);
   font-family: var(--mono);
-  font-size: 16px;
+  font-size: 20px;
 }
 
 .holo-card__metric small {
   display: block;
   margin-top: 2px;
   color: #718779;
-  font-size: 7px;
+  font-size: 10.5px;
 }
 
 .holo-open {
@@ -845,7 +865,7 @@ a {
   align-items: center;
   gap: 5px;
   color: var(--card-accent);
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 .holo-card__scan {
@@ -896,7 +916,7 @@ a {
   gap: 7px;
   margin: -2px 0 0;
   color: #6e8777;
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 .projection-prompt svg,
@@ -1129,7 +1149,7 @@ a {
   display: flex;
   justify-content: space-between;
   color: #587060;
-  font-size: 7px;
+  font-size: 10.5px;
 }
 
 .watch-caption b {
@@ -1179,7 +1199,7 @@ a {
 .dial-control-label {
   margin: 0 5px;
   color: #60776a;
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 .selection-count {
@@ -1187,7 +1207,7 @@ a {
   align-items: center;
   gap: 8px;
   color: #698172;
-  font-size: 9px;
+  font-size: 12.5px;
 }
 
 .selection-count span:first-child {
@@ -1203,7 +1223,7 @@ a {
 .selection-count b {
   margin-left: 9px;
   color: #a1b7a7;
-  font-size: 8px;
+  font-size: 11.5px;
   font-weight: 400;
 }
 
@@ -1212,7 +1232,7 @@ a {
   justify-content: flex-end;
   gap: 16px;
   color: #63786a;
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 .key-hints span {
@@ -1230,7 +1250,7 @@ a {
   border-radius: 2px;
   color: #aac2b0;
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 12.5px;
 }
 
 .info-rail {
@@ -1247,7 +1267,7 @@ a {
 
 .info-rail__serial {
   color: #506858;
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 .active-file-icon {
@@ -1295,9 +1315,10 @@ a {
 
 .info-rail h2 {
   margin: 0;
-  font-size: 31px;
-  font-weight: 500;
-  letter-spacing: -.06em;
+  font-family: var(--font-heading);
+  font-size: 40px;
+  font-weight: 400;
+  letter-spacing: .02em;
 }
 
 .info-rail h2 span {
@@ -1305,10 +1326,10 @@ a {
 }
 
 .info-rail__copy {
-  max-width: 170px;
+  max-width: 195px;
   margin: 6px 0 23px;
   color: #809588;
-  font-size: 12px;
+  font-size: 16px;
   line-height: 1.65;
 }
 
@@ -1320,14 +1341,14 @@ a {
 
 .info-rail__metric span {
   color: var(--green);
-  font-size: 24px;
+  font-size: 30px;
   letter-spacing: -.05em;
 }
 
 .info-rail__metric small {
   color: #64796b;
   font-family: var(--mono);
-  font-size: 8px;
+  font-size: 11.5px;
   letter-spacing: .1em;
 }
 
@@ -1344,7 +1365,7 @@ a {
   gap: 5px;
   min-height: 26px;
   color: #6f8476;
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 .signal-row svg {
@@ -1353,7 +1374,7 @@ a {
 
 .signal-row b {
   color: #9cc8a5;
-  font-size: 8px;
+  font-size: 11.5px;
   font-weight: 400;
 }
 
@@ -1373,7 +1394,7 @@ a {
 
 .info-rail__tip p {
   margin: 0;
-  font-size: 10px;
+  font-size: 13.5px;
   line-height: 1.55;
 }
 
@@ -1385,7 +1406,7 @@ a {
   justify-content: space-between;
   border-top: 1px solid var(--line);
   color: #52665a;
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 .footer-star {
@@ -1427,7 +1448,7 @@ a {
   background: rgba(3, 14, 8, .9);
   color: #b8d9c1;
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 12.5px;
   letter-spacing: .12em;
 }
 
@@ -1487,7 +1508,7 @@ a {
   background: rgba(9, 20, 14, .6);
   color: #c3d6c8;
   cursor: pointer;
-  font-size: 8px;
+  font-size: 11.5px;
   transition: border .2s, color .2s, background .2s;
 }
 
@@ -1506,7 +1527,7 @@ a {
   align-items: center;
   gap: 11px;
   color: #62796a;
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 .breadcrumbs i {
@@ -1539,7 +1560,7 @@ a {
 .portfolio-rail__label {
   margin-bottom: 12px;
   color: #617668;
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 .section-nav--compact {
@@ -1549,7 +1570,7 @@ a {
 .section-nav--compact .section-nav__item {
   min-height: 39px;
   gap: 9px;
-  font-size: 11px;
+  font-size: 15px;
 }
 
 .section-nav--compact .section-nav__icon {
@@ -1568,7 +1589,7 @@ a {
   padding-top: 15px;
   border-top: 1px solid var(--line);
   color: #607568;
-  font-size: 8px;
+  font-size: 11.5px;
   line-height: 1.9;
 }
 
@@ -1612,10 +1633,11 @@ a {
 
 .section-heading h1 {
   margin: 0;
-  font-size: clamp(34px, 4vw, 49px);
-  font-weight: 500;
-  letter-spacing: -.07em;
-  line-height: 1;
+  font-family: var(--font-heading);
+  font-size: clamp(44px, 5.5vw, 64px);
+  font-weight: 400;
+  letter-spacing: .02em;
+  line-height: 1.05;
 }
 
 .heading-period {
@@ -1631,19 +1653,19 @@ a {
   padding: 8px 10px;
   border: 1px solid var(--line);
   color: #789080;
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 .section-heading__stamp b {
   color: var(--green);
-  font-size: 13px;
+  font-size: 17px;
 }
 
 .section-heading__stamp small {
   grid-column: 1 / -1;
   margin-top: 4px;
   color: #5d7163;
-  font-size: 7px;
+  font-size: 10.5px;
 }
 
 .section-view {
@@ -1682,9 +1704,10 @@ a {
 
 .about-hero__copy h2 {
   margin: 8px 0 2px;
-  font-size: clamp(25px, 3vw, 34px);
-  font-weight: 500;
-  letter-spacing: -.06em;
+  font-family: var(--font-heading);
+  font-size: clamp(34px, 4vw, 46px);
+  font-weight: 400;
+  letter-spacing: .02em;
 }
 
 .about-hero__copy h2 span {
@@ -1694,17 +1717,17 @@ a {
 .role-line {
   margin: 0 0 15px;
   color: #7fa18a;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .body-copy {
   color: #a0afa4;
-  font-size: 12px;
+  font-size: 16px;
   line-height: 1.75;
 }
 
 .about-hero__copy .body-copy {
-  max-width: 450px;
+  max-width: 520px;
   margin: 0;
 }
 
@@ -1715,7 +1738,7 @@ a {
   margin-top: 15px;
   color: #718779;
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 12.5px;
 }
 
 .location-line svg {
@@ -1755,14 +1778,13 @@ a {
 
 .orbit-core {
   display: grid;
-  width: 46px;
-  height: 46px;
+  width: 100px;
+  height: 100px;
   place-items: center;
-  transform: rotate(45deg);
   border: 1px solid rgba(163, 255, 201, .5);
   background: rgba(47, 120, 74, .27);
   color: #caffdb;
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 300;
   box-shadow: 0 0 27px rgba(95, 230, 144, .16);
 }
@@ -1801,7 +1823,7 @@ a {
   bottom: 15px;
   color: #4e6857;
   font-family: var(--mono);
-  font-size: 7px;
+  font-size: 10.5px;
   line-height: 1.7;
 }
 
@@ -1813,13 +1835,13 @@ a {
   border-left: 1px solid var(--line);
   padding: 16px 0;
   color: #546a5b;
-  font-size: 7px;
+  font-size: 10.5px;
   writing-mode: vertical-rl;
 }
 
 .about-hero__index b {
   color: var(--green-dim);
-  font-size: 10px;
+  font-size: 13.5px;
   font-weight: 400;
 }
 
@@ -1841,18 +1863,18 @@ a {
   align-items: center;
   justify-content: space-between;
   color: #789181;
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 .panel-plus {
   color: var(--green-dim);
   font-family: var(--mono);
-  font-size: 15px;
+  font-size: 19px;
 }
 
 .text-panel h3 {
   margin: 20px 0 11px;
-  font-size: 19px;
+  font-size: 24px;
   font-weight: 500;
   letter-spacing: -.045em;
 }
@@ -1866,7 +1888,7 @@ a {
 .text-panel .body-copy {
   max-width: 540px;
   margin: 8px 0 0;
-  font-size: 11px;
+  font-size: 15px;
 }
 
 .principle-row {
@@ -1888,11 +1910,11 @@ a {
 
 .principle-row>span {
   color: var(--green-dim);
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 .principle-row b {
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 400;
 }
 
@@ -1914,14 +1936,14 @@ a {
 .quote-strip>span:first-child {
   color: var(--green-dim);
   font-family: Georgia, serif;
-  font-size: 34px;
+  font-size: 40px;
   line-height: 1;
 }
 
 .quote-strip p {
   margin: 0;
   color: #9aafa0;
-  font-size: 11px;
+  font-size: 15px;
   line-height: 1.6;
 }
 
@@ -1934,7 +1956,7 @@ a {
   margin-left: auto;
   color: #637969;
   font-family: var(--mono);
-  font-size: 7px;
+  font-size: 10.5px;
   letter-spacing: .1em;
 }
 
@@ -1944,7 +1966,7 @@ a {
   border-top: 1px solid var(--line);
   padding-top: 14px;
   color: #607468;
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 .portfolio-footer b {
@@ -1969,16 +1991,18 @@ a {
 
 .view-intro h2 {
   margin: 5px 0 5px;
-  font-size: 27px;
-  font-weight: 500;
-  letter-spacing: -.055em;
+  font-family: var(--font-heading);
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: .02em;
+  line-height: 1.15;
 }
 
 .view-intro>.body-copy,
 .view-intro>div>.body-copy {
   max-width: 560px;
   margin: 0;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .view-intro--row {
@@ -1997,14 +2021,14 @@ a {
 
 .project-count b {
   color: var(--green);
-  font-size: 27px;
+  font-size: 33px;
   font-weight: 400;
   letter-spacing: -.07em;
 }
 
 .project-count span {
   color: #71877a;
-  font-size: 7px;
+  font-size: 10.5px;
   line-height: 1.6;
 }
 
@@ -2027,13 +2051,13 @@ a {
 
 .skill-card__head>span:first-child {
   color: var(--green-dim);
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 .skill-card__head h3 {
   margin: 0;
   color: #d2e6d8;
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: .12em;
 }
@@ -2041,7 +2065,7 @@ a {
 .skill-card__count {
   margin-left: auto;
   color: #647c6b;
-  font-size: 9px;
+  font-size: 12.5px;
 }
 
 .skill-list {
@@ -2058,7 +2082,7 @@ a {
   border: 1px solid rgba(151, 211, 177, .12);
   padding: 6px 8px;
   color: #a4b5a8;
-  font-size: 10px;
+  font-size: 13.5px;
 }
 
 .skill-chip i {
@@ -2087,7 +2111,7 @@ a {
   gap: 8px;
   margin-top: 17px;
   color: #829688;
-  font-size: 10px;
+  font-size: 13.5px;
 }
 
 .note-line svg {
@@ -2195,7 +2219,7 @@ a {
   position: absolute;
   top: 11px;
   color: #809985;
-  font-size: 7px;
+  font-size: 10.5px;
 }
 
 .project-art__serial {
@@ -2211,7 +2235,7 @@ a {
   position: relative;
   z-index: 1;
   color: rgba(227, 255, 234, .78);
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 500;
   letter-spacing: -.04em;
   text-shadow: 0 0 20px rgba(158, 255, 189, .35);
@@ -2223,22 +2247,22 @@ a {
 
 .project-card__body h3 {
   margin: 5px 0 7px;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 500;
   letter-spacing: -.035em;
 }
 
 .project-card__body>p {
-  min-height: 37px;
+  min-height: 45px;
   margin: 0;
   color: #8c9f91;
-  font-size: 10px;
+  font-size: 13.5px;
   line-height: 1.65;
 }
 
 .project-card__body .eyebrow {
   color: #789080;
-  font-size: 7px;
+  font-size: 10.5px;
 }
 
 .tag-list {
@@ -2252,7 +2276,7 @@ a {
   border: 1px solid rgba(151, 211, 177, .13);
   padding: 4px 6px;
   color: #82a18a;
-  font-size: 7px;
+  font-size: 10.5px;
 }
 
 .project-footnote {
@@ -2261,7 +2285,7 @@ a {
   gap: 8px;
   margin-top: 13px;
   color: #708476;
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 .project-footnote svg {
@@ -2301,7 +2325,7 @@ a {
   gap: 7px;
   color: var(--green-dim);
   font-family: var(--mono);
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 .timeline-marker i {
@@ -2330,21 +2354,21 @@ a {
 
 .timeline-card h3 {
   margin: 9px 0 2px;
-  font-size: 18px;
+  font-size: 23px;
   font-weight: 500;
   letter-spacing: -.04em;
 }
 
 .timeline-org {
   color: #9bc8a5;
-  font-size: 11px;
+  font-size: 15px;
 }
 
 .timeline-card>p {
   max-width: 640px;
   margin: 10px 0 0;
   color: #8ea194;
-  font-size: 11px;
+  font-size: 15px;
   line-height: 1.7;
 }
 
@@ -2354,7 +2378,7 @@ a {
   gap: 8px;
   margin: 16px 0 0 56px;
   color: #7a9281;
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 .education-card {
@@ -2371,13 +2395,13 @@ a {
 
 .education-symbol {
   color: var(--green);
-  font-size: 19px;
+  font-size: 24px;
 }
 
 .education-card__number {
   margin-left: auto;
   color: #536e5d;
-  font-size: 9px;
+  font-size: 12.5px;
 }
 
 .education-record {
@@ -2387,7 +2411,7 @@ a {
 
 .education-record h3 {
   margin: 7px 0 3px;
-  font-size: 22px;
+  font-size: 27px;
   font-weight: 500;
   letter-spacing: -.05em;
 }
@@ -2395,14 +2419,14 @@ a {
 .education-record h4 {
   margin: 0;
   color: #9cc7a5;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 400;
 }
 
 .education-record p {
   margin: 11px 0 0;
   color: #889b8d;
-  font-size: 11px;
+  font-size: 15px;
   line-height: 1.7;
 }
 
@@ -2412,7 +2436,7 @@ a {
   border-top: 1px solid var(--line);
   padding-top: 13px;
   color: #667d6c;
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 .education-card__footer b {
@@ -2420,7 +2444,7 @@ a {
   align-items: center;
   gap: 6px;
   color: #92c59e;
-  font-size: 8px;
+  font-size: 11.5px;
   font-weight: 400;
 }
 
@@ -2444,7 +2468,7 @@ a {
 
 .learning-note p {
   margin: 0;
-  font-size: 11px;
+  font-size: 15px;
   line-height: 1.7;
 }
 
@@ -2470,7 +2494,7 @@ a {
   align-items: center;
   gap: 6px;
   color: #8fbd99;
-  font-size: 7px;
+  font-size: 10.5px;
 }
 
 .contact-signal .live-dot {
@@ -2492,7 +2516,7 @@ a {
 .contact-card>.eyebrow {
   display: block;
   color: #718677;
-  font-size: 7px;
+  font-size: 10.5px;
 }
 
 .contact-email {
@@ -2502,7 +2526,7 @@ a {
   margin-top: 6px;
   overflow-wrap: anywhere;
   color: #d2f0da;
-  font-size: clamp(15px, 2vw, 20px);
+  font-size: clamp(18px, 2.5vw, 25px);
   text-decoration: none;
 }
 
@@ -2520,7 +2544,7 @@ a {
   background: transparent;
   color: #81988a;
   cursor: pointer;
-  font-size: 7px;
+  font-size: 10.5px;
 }
 
 .copy-button:hover {
@@ -2540,7 +2564,7 @@ a {
   gap: 5px;
   color: #91ac99;
   font-family: var(--mono);
-  font-size: 8px;
+  font-size: 11.5px;
   text-decoration: none;
 }
 
@@ -2560,7 +2584,7 @@ a {
   gap: 5px;
   color: #93a99a;
   font-family: var(--mono);
-  font-size: 8px;
+  font-size: 11.5px;
   letter-spacing: .06em;
   text-transform: uppercase;
 }
@@ -2575,7 +2599,7 @@ a {
   background: rgba(3, 9, 5, .67);
   color: var(--text);
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px;
+  font-size: 15px;
   letter-spacing: 0;
   text-transform: none;
   transition: border .2s;
@@ -2594,7 +2618,7 @@ a {
 
 .contact-form__id {
   color: #586f60;
-  font-size: 7px;
+  font-size: 10.5px;
 }
 
 .send-button {
@@ -2607,7 +2631,7 @@ a {
   background: rgba(83, 177, 112, .1);
   color: var(--green);
   cursor: pointer;
-  font-size: 8px;
+  font-size: 11.5px;
   transition: background .2s;
 }
 
@@ -2618,7 +2642,7 @@ a {
 .form-note {
   margin: -3px 0 0;
   color: #617568;
-  font-size: 7px;
+  font-size: 10.5px;
   text-align: center;
 }
 
@@ -2651,7 +2675,7 @@ a {
   }
 
   .holo-card__name {
-    font-size: 23px;
+    font-size: 28px;
   }
 
   .portfolio-layout {
@@ -2767,17 +2791,17 @@ a {
   }
 
   .intro-meta {
-    font-size: 8px;
+    font-size: 11.5px;
   }
 
   .intro-meta .brand-mark {
-    font-size: 10px;
+    font-size: 13.5px;
   }
 
   .skip-button {
     top: 55px;
     right: 18px;
-    font-size: 8px;
+    font-size: 11.5px;
   }
 
   .cosmic-emblem {
@@ -2786,17 +2810,17 @@ a {
   }
 
   .intro-center h1 {
-    font-size: clamp(45px, 14vw, 68px);
+    font-size: clamp(52px, 15vw, 78px);
   }
 
   .intro-copy {
     max-width: 260px;
-    font-size: 13px;
+    font-size: 17px;
     line-height: 1.5;
   }
 
   .intro-bottom {
-    font-size: 8px;
+    font-size: 11.5px;
   }
 
   .omnitrix-page {
@@ -2809,11 +2833,11 @@ a {
   }
 
   .brand .brand-mark {
-    font-size: 10px;
+    font-size: 13.5px;
   }
 
   .brand-sub {
-    font-size: 7px;
+    font-size: 10.5px;
   }
 
   .nav-main {
@@ -2828,22 +2852,22 @@ a {
   }
 
   .selector-heading .eyebrow {
-    font-size: 8px;
+    font-size: 11.5px;
   }
 
   .selector-heading h1 {
-    font-size: clamp(29px, 9vw, 38px);
+    font-size: clamp(34px, 10vw, 45px);
   }
 
   .selector-heading p {
     max-width: 255px;
-    font-size: 11px;
+    font-size: 15px;
   }
 
   .heading-stamp {
     gap: 6px;
     padding: 7px;
-    font-size: 7px;
+    font-size: 10.5px;
   }
 
   .heading-stamp svg {
@@ -2860,7 +2884,7 @@ a {
 
   .projection-kicker {
     width: 100%;
-    font-size: 7px;
+    font-size: 10.5px;
   }
 
   .carousel-stage {
@@ -2888,17 +2912,17 @@ a {
   }
 
   .holo-card__name {
-    font-size: 22px;
+    font-size: 27px;
   }
 
   .holo-card__summary {
-    font-size: 10px;
+    font-size: 13.5px;
   }
 
   .projection-prompt {
     gap: 5px;
     margin-top: 0;
-    font-size: 7px;
+    font-size: 10.5px;
   }
 
   .projection-prompt__hint {
@@ -2937,7 +2961,7 @@ a {
 
   .selection-count {
     justify-content: flex-end;
-    font-size: 8px;
+    font-size: 11.5px;
   }
 
   .selection-count b {
@@ -2983,13 +3007,13 @@ a {
   .mobile-dock span {
     color: #758a7b;
     font-family: var(--mono);
-    font-size: 7px;
+    font-size: 10.5px;
     letter-spacing: .12em;
   }
 
   .mobile-dock strong {
     color: #d4ecdb;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 500;
   }
 
@@ -3005,7 +3029,7 @@ a {
   .back-button {
     gap: 6px;
     padding: 8px;
-    font-size: 7px;
+    font-size: 10.5px;
   }
 
   .breadcrumbs {
@@ -3032,16 +3056,16 @@ a {
   }
 
   .section-heading h1 {
-    font-size: 37px;
+    font-size: 44px;
   }
 
   .section-heading__stamp {
     padding: 6px 7px;
-    font-size: 6px;
+    font-size: 9px;
   }
 
   .section-heading__stamp small {
-    font-size: 6px;
+    font-size: 9px;
   }
 
   .section-view {
@@ -3058,11 +3082,11 @@ a {
   }
 
   .about-hero__copy h2 {
-    font-size: 27px;
+    font-size: 33px;
   }
 
   .about-hero__copy .body-copy {
-    font-size: 11px;
+    font-size: 15px;
   }
 
   .about-orbit-art {
@@ -3093,11 +3117,11 @@ a {
 
   .text-panel h3 {
     margin-top: 17px;
-    font-size: 17px;
+    font-size: 21.5px;
   }
 
   .text-panel .body-copy {
-    font-size: 10px;
+    font-size: 13.5px;
   }
 
   .quote-strip {
@@ -3106,17 +3130,17 @@ a {
   }
 
   .quote-strip p {
-    font-size: 9px;
+    font-size: 12.5px;
   }
 
   .quote-strip__end {
     max-width: 76px;
-    font-size: 6px;
+    font-size: 9px;
     text-align: right;
   }
 
   .portfolio-footer {
-    font-size: 6px;
+    font-size: 9px;
   }
 
   .portfolio-footer span:nth-child(2) {
@@ -3128,12 +3152,12 @@ a {
   }
 
   .view-intro h2 {
-    font-size: 24px;
+    font-size: 30px;
   }
 
   .view-intro>.body-copy,
   .view-intro>div>.body-copy {
-    font-size: 11px;
+    font-size: 15px;
   }
 
   .view-intro--row {
@@ -3145,11 +3169,11 @@ a {
   }
 
   .project-count b {
-    font-size: 23px;
+    font-size: 28px;
   }
 
   .project-count span {
-    font-size: 6px;
+    font-size: 9px;
   }
 
   .skill-card {
@@ -3164,7 +3188,7 @@ a {
 
   .skill-chip {
     padding: 5px 7px;
-    font-size: 9px;
+    font-size: 12.5px;
   }
 
   .skill-meter {
@@ -3196,7 +3220,7 @@ a {
   }
 
   .project-card__body h3 {
-    font-size: 15px;
+    font-size: 19px;
   }
 
   .project-card__body>p {
@@ -3213,7 +3237,7 @@ a {
   }
 
   .timeline-marker {
-    font-size: 7px;
+    font-size: 10.5px;
   }
 
   .timeline-card {
@@ -3221,16 +3245,16 @@ a {
   }
 
   .timeline-card h3 {
-    font-size: 16px;
+    font-size: 20px;
   }
 
   .timeline-card>p {
-    font-size: 10px;
+    font-size: 13.5px;
   }
 
   .experience-note {
     margin-left: 41px;
-    font-size: 7px;
+    font-size: 10.5px;
   }
 
   .education-card {
@@ -3243,11 +3267,11 @@ a {
   }
 
   .education-record h3 {
-    font-size: 19px;
+    font-size: 24px;
   }
 
   .education-record h4 {
-    font-size: 11px;
+    font-size: 15px;
   }
 
   .contact-card,
@@ -3261,7 +3285,7 @@ a {
   }
 
   .contact-email {
-    font-size: 17px;
+    font-size: 21.5px;
   }
 
   .social-links {
@@ -3288,13 +3312,13 @@ a {
 .mobile-dock__center>span {
   color: #758a7b;
   font-family: var(--mono);
-  font-size: 7px;
+  font-size: 10.5px;
   letter-spacing: .12em;
 }
 
 .mobile-dock__center strong {
   color: #d4ecdb;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 500;
 }
 
@@ -3332,7 +3356,7 @@ a {
   margin-top: 17px;
   color: #60776a;
   font-family: var(--mono);
-  font-size: 7px;
+  font-size: 10.5px;
   letter-spacing: .1em;
 }
 
@@ -3364,7 +3388,7 @@ a {
   width: 82%;
   padding: 2px 5px;
   background: rgba(5, 12, 8, .42);
-  font-size: clamp(11px, 1.4vw, 18px);
+  font-size: clamp(14px, 1.8vw, 22px);
   text-align: center;
 }
 
@@ -3381,7 +3405,7 @@ a {
   gap: 5px;
   color: #8eaa96;
   font-family: var(--mono);
-  font-size: 8px;
+  font-size: 11.5px;
   letter-spacing: .1em;
   text-decoration: none;
 }
@@ -3397,7 +3421,7 @@ a {
   padding: 4px 6px;
   color: #80a18a;
   font-family: var(--mono);
-  font-size: 7px;
+  font-size: 10.5px;
   letter-spacing: .1em;
   text-transform: uppercase;
 }
@@ -3410,7 +3434,7 @@ a {
   margin: 12px 0 0;
   padding-left: 17px;
   color: #91a396;
-  font-size: 10px;
+  font-size: 13.5px;
   line-height: 1.65;
 }
 

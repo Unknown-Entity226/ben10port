@@ -3,7 +3,11 @@ export default {
   theme: {
     extend: {
       colors: { cosmic: '#030806', holo: '#8cf5bd', mint: '#e8f7ee', muted: '#80968a' },
-      fontFamily: { display: ['Space Grotesk', 'sans-serif'], mono: ['DM Mono', 'monospace'] },
+      fontFamily: {
+        display: ['Space Grotesk', 'sans-serif'],
+        mono: ['DM Mono', 'monospace'],
+        heading: ['"BadaBoom BB"', 'sans-serif'],
+      },
       boxShadow: { holo: '0 0 28px rgba(140,245,189,.25)' },
     },
   },

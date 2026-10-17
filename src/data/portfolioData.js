@@ -41,7 +41,7 @@ export const profile = {
       qualification:
         'B.Tech in Computer Science and Engineering - Artificial Intelligence (CSE-AI)',
       institution: 'Guru Gobind Singh Indraprastha University (GGSIPU)',
-      period: '2023 — 2027',
+      period: '2024 — 2028',
       detail:
         'University School of Information, Communication and Technology (USICT). Specializing in artificial intelligence, full-stack systems, algorithmic engineering, and data architectures.',
     },

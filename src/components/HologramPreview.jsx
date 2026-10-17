@@ -88,12 +88,7 @@ export default function HologramPreview({
                   <Icon size={27} strokeWidth={1.55} />
                 </span>
                 <span className="holo-card__name">{section.name}</span>
-                <span className="holo-card__summary">{section.summary}</span>
                 <span className="holo-card__bottom">
-                  <span className="holo-card__metric">
-                    {section.metric}
-                    <small>{section.metricLabel}</small>
-                  </span>
                   {isActive}
                 </span>
                 <span className="holo-card__scan" aria-hidden="true" />
@@ -102,12 +97,7 @@ export default function HologramPreview({
           })}
         </div>
       </div>
-      <div className="projection-focus" aria-hidden="true">
-        <span />
-        <span />
-        <span />
-      </div>
-      <p className="projection-prompt">
+            <p className="projection-prompt">
         <ActiveIcon size={13} />
         <span>SELECTED FILE</span>
         <b>{active.name.toUpperCase()}</b>

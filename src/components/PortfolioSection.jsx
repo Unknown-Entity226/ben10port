@@ -40,9 +40,6 @@ export default function PortfolioSection({
           <ArrowLeft size={15} />
           <span>BACK TO OMNITRIX</span>
         </button>
-        <div className="breadcrumbs">
-          <span>OMNITRIX OS</span><i>/</i><span>PERSONAL DATABASE</span><i>/</i><b>{selected.name.toUpperCase()}</b>
-        </div>
       </header>
       <div className="portfolio-layout">
         <aside className="portfolio-rail">

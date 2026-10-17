@@ -73,15 +73,6 @@ export default function OmnitrixInterface({
       >
         <aside className="desktop-rail">
           <SidebarNav activeSection={activeSection} onSelect={onGoToSection} />
-          <div className="rail-bottom">
-            <span className="rail-crosshair">+</span>
-            <span>
-              ARCHIVE
-              <br />
-              ACCESS
-            </span>
-            <span className="rail-bottom__code">OS / 001</span>
-          </div>
         </aside>
         <div className="nav-main">
           <div className="selection-scene">
