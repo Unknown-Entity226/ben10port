@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { sectionMeta } from "../data/portfolioData.js";
 
 export default function ActivationTransition({ section, reducedMotion }) {
-  const selected = sectionMeta.find((item) => item.id === section);
+  const selected = sectionMeta.find((item) => item.id === section) || sectionMeta[0];
   return (
     <motion.div
       className="activation-overlay"

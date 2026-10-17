@@ -39,7 +39,7 @@ export default function OmnitrixModel({
           type="button"
           onClick={onActivate}
           disabled={locked}
-          aria-label={`Activate ${sectionMeta[activeIndex].name}`}
+          aria-label={`Activate ${sectionMeta[activeIndex]?.name || 'section'}`}
         >
           <svg
             viewBox="0 0 100 100"

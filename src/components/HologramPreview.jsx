@@ -17,8 +17,8 @@ export default function HologramPreview({
   onRotate,
   onActivate,
 }) {
-  const active = sectionMeta[activeIndex];
-  const ActiveIcon = sectionIcons[active.id];
+  const active = sectionMeta[activeIndex] || sectionMeta[0];
+  const ActiveIcon = sectionIcons[active.id] || (() => null);
   return (
     <section
       className="projection"

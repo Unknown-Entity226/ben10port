@@ -40,8 +40,9 @@ export function useOmnitrixState() {
       window.matchMedia("(prefers-reduced-motion: reduce)").matches,
   );
   const timer = useRef(null);
-  const activeIndex = sectionMeta.findIndex(
-    (item) => item.id === activeSection,
+  const activeIndex = Math.max(
+    0,
+    sectionMeta.findIndex((item) => item.id === activeSection),
   );
   const isLocked = stage === "activating" || stage === "returning";
 

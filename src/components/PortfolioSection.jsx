@@ -30,8 +30,8 @@ export default function PortfolioSection({
   onToggleSfx,
   onToggleMotion,
 }) {
-  const selected = sectionMeta.find((item) => item.id === activeSection);
-  const Icon = sectionIcons[activeSection];
+  const selected = sectionMeta.find((item) => item.id === activeSection) || sectionMeta[0];
+  const Icon = sectionIcons[activeSection] || sectionIcons[selected.id];
   return (
     <motion.main
       className={`portfolio-page${isReturning ? " portfolio-page--returning" : ""}`}

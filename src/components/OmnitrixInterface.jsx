@@ -28,8 +28,8 @@ export default function OmnitrixInterface({
 }) {
   const touchStart = useRef(null);
   const wheelAt = useRef(0);
-  const selected = sectionMeta[activeIndex];
-  const ActiveIcon = sectionIcons[activeSection];
+  const selected = sectionMeta[activeIndex] || sectionMeta[0];
+  const ActiveIcon = (activeSection && sectionIcons[activeSection]) || sectionIcons[selected?.id] || (() => null);
   function handleTouchStart(event) {
     const touch = event.changedTouches[0];
     touchStart.current = { x: touch.clientX, y: touch.clientY };
