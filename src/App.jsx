@@ -19,12 +19,11 @@ export default function App() {
     omnitrix.stage === "section" || omnitrix.stage === "returning";
 
   return (
-    <div className="app-shell" data-reduced-motion={omnitrix.reducedMotion}>
+    <div className="app-shell">
       <AnimatePresence mode="wait">
         {omnitrix.stage === "intro" && (
           <IntroSequence
             key="intro"
-            reducedMotion={omnitrix.reducedMotion}
             onComplete={omnitrix.skipIntro}
           />
         )}
@@ -34,27 +33,19 @@ export default function App() {
             stage={omnitrix.stage}
             activeSection={omnitrix.activeSection}
             activeIndex={omnitrix.activeIndex}
-            sfxEnabled={omnitrix.sfxEnabled}
-            reducedMotion={omnitrix.reducedMotion}
             locked={omnitrix.isLocked}
             onRotate={omnitrix.rotateDial}
             onActivate={omnitrix.activateSection}
             onGoToSection={omnitrix.goToSection}
-            onToggleSfx={omnitrix.toggleSfx}
-            onToggleMotion={omnitrix.toggleReducedMotion}
           />
         )}
         {showingPortfolio && (
           <PortfolioSection
             key="portfolio"
             activeSection={omnitrix.activeSection}
-            reducedMotion={omnitrix.reducedMotion}
-            sfxEnabled={omnitrix.sfxEnabled}
             isReturning={omnitrix.stage === "returning"}
             onReturn={omnitrix.returnToDial}
             onSelect={omnitrix.goToSection}
-            onToggleSfx={omnitrix.toggleSfx}
-            onToggleMotion={omnitrix.toggleReducedMotion}
           />
         )}
       </AnimatePresence>
@@ -63,7 +54,6 @@ export default function App() {
           <ActivationTransition
             key="activation"
             section={omnitrix.activeSection}
-            reducedMotion={omnitrix.reducedMotion}
           />
         )}
       </AnimatePresence>

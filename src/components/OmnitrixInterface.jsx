@@ -2,13 +2,9 @@ import { useRef } from "react";
 import {
   ArrowLeft,
   ArrowRight,
-  Command,
-  Orbit,
-  Radio,
   ShieldCheck,
 } from "lucide-react";
 import { sectionIcons, sectionMeta } from "../data/portfolioData.js";
-import AccessibilityControls from "./AccessibilityControls.jsx";
 import HologramPreview from "./HologramPreview.jsx";
 import OmnitrixModel from "./OmnitrixModel.jsx";
 import SidebarNav from "./SidebarNav.jsx";
@@ -17,19 +13,18 @@ export default function OmnitrixInterface({
   stage,
   activeSection,
   activeIndex,
-  sfxEnabled,
-  reducedMotion,
   locked,
   onRotate,
   onActivate,
   onGoToSection,
-  onToggleSfx,
-  onToggleMotion,
 }) {
   const touchStart = useRef(null);
   const wheelAt = useRef(0);
   const selected = sectionMeta[activeIndex] || sectionMeta[0];
-  const ActiveIcon = (activeSection && sectionIcons[activeSection]) || sectionIcons[selected?.id] || (() => null);
+  const ActiveIcon =
+    (activeSection && sectionIcons[activeSection]) ||
+    sectionIcons[selected?.id] ||
+    (() => null);
   function handleTouchStart(event) {
     const touch = event.changedTouches[0];
     touchStart.current = { x: touch.clientX, y: touch.clientY };
@@ -70,29 +65,13 @@ export default function OmnitrixInterface({
             <span className="brand-mark__dot" /> OMNITRIX
             <span className="brand__os">OS</span>
           </span>
-          <span className="brand-sub">A PERSONAL ARCHIVE</span>
         </a>
-        <div className="topbar-status">
-          <span className="live-dot" /> SYSTEM ONLINE{" "}
-          <span className="topbar-status__divider">/</span> DIMENSION 001
-        </div>
-        <AccessibilityControls
-          sfxEnabled={sfxEnabled}
-          reducedMotion={reducedMotion}
-          onToggleSfx={onToggleSfx}
-          onToggleMotion={onToggleMotion}
-          compact
-        />
       </header>
       <section
         className="nav-layout"
         aria-label="Omnitrix portfolio navigation"
       >
         <aside className="desktop-rail">
-          <div className="rail-heading">
-            <span>INDEX</span>
-            <span>06</span>
-          </div>
           <SidebarNav activeSection={activeSection} onSelect={onGoToSection} />
           <div className="rail-bottom">
             <span className="rail-crosshair">+</span>
@@ -105,30 +84,9 @@ export default function OmnitrixInterface({
           </div>
         </aside>
         <div className="nav-main">
-          <div className="selector-heading">
-            <div>
-              <span className="eyebrow">
-                <span className="eyebrow-index">01</span> CHOOSE YOUR
-                DESTINATION
-              </span>
-              <h1>
-                Explore the <span>archive.</span>
-              </h1>
-              <p>Six coordinates. One curious mind. Pick a thread.</p>
-            </div>
-            <div className="heading-stamp">
-              <Orbit size={17} />
-              <span>
-                PERSONAL
-                <br />
-                DATABASE
-              </span>
-            </div>
-          </div>
           <div className="selection-scene">
             <HologramPreview
               activeIndex={activeIndex}
-              reducedMotion={reducedMotion}
               locked={locked}
               onRotate={onRotate}
               onActivate={onActivate}
@@ -136,7 +94,6 @@ export default function OmnitrixInterface({
             <OmnitrixModel
               activeIndex={activeIndex}
               locked={locked}
-              reducedMotion={reducedMotion}
               onActivate={onActivate}
             />
           </div>
@@ -178,10 +135,6 @@ export default function OmnitrixInterface({
           </div>
         </div>
         <aside className="info-rail">
-          <div className="info-rail__top">
-            <span className="eyebrow">ACTIVE FILE</span>
-            <span className="info-rail__serial">FILE_0{activeIndex + 1}</span>
-          </div>
           <div className="active-file-icon">
             <span className="active-file-orbit" />
             <span className="active-file-orbit active-file-orbit--inner" />
@@ -198,28 +151,12 @@ export default function OmnitrixInterface({
           </div>
           <div className="info-rail__rule" />
           <div className="signal-row">
-            <Radio size={14} />
-            <span>DATA SIGNAL</span>
-            <b>STRONG</b>
-          </div>
-          <div className="signal-row">
             <ShieldCheck size={14} />
             <span>ACCESS</span>
             <b>OPEN</b>
           </div>
-          <div className="info-rail__tip">
-            <Command size={14} />
-            <p>Tap the dial, press enter, or browse directly from the index.</p>
-          </div>
         </aside>
       </section>
-      <footer className="page-footer">
-        <span>
-          BUILT FROM CURIOSITY <span className="footer-star">✳</span>
-        </span>
-        <span>BEST VIEWED WITH YOUR IMAGINATION</span>
-        <span>EARTH / SOL SYSTEM</span>
-      </footer>
       <div className="mobile-dock">
         <button
           className="mobile-dock__arrow"

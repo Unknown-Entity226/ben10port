@@ -4,7 +4,6 @@ import { sectionMeta } from "../data/portfolioData.js";
 export default function OmnitrixModel({
   activeIndex,
   locked,
-  reducedMotion,
   onActivate,
 }) {
   return (
@@ -14,7 +13,7 @@ export default function OmnitrixModel({
       <div className="watch-case">
         <motion.div
           className="watch-bezel"
-          animate={{ rotate: reducedMotion ? 0 : activeIndex * 60 }}
+          animate={{ rotate: activeIndex * 60 }}
           transition={{ type: "spring", stiffness: 90, damping: 16 }}
           aria-hidden="true"
         >

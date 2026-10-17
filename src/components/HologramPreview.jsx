@@ -12,7 +12,6 @@ function relativeOffset(index, activeIndex) {
 
 export default function HologramPreview({
   activeIndex,
-  reducedMotion,
   locked,
   onRotate,
   onActivate,
@@ -34,12 +33,6 @@ export default function HologramPreview({
         }
       }}
     >
-      <div className="projection-beam" aria-hidden="true" />
-      <div className="projection-kicker">
-        <span className="live-dot" /> HOLOGRAPHIC INDEX{" "}
-        <span className="projection-kicker__line" />{" "}
-        <span>0{active.index + 1} / 06</span>
-      </div>
       <div className="carousel-stage" style={{ perspective: 1000 }}>
         <div className="carousel-track">
           {sectionMeta.map((section, index) => {
@@ -58,34 +51,23 @@ export default function HologramPreview({
                 type="button"
                 className={`holo-card${isActive ? " holo-card--active" : ""}`}
                 style={{ "--card-accent": section.accent }}
-                animate={
-                  reducedMotion
-                    ? {
-                        x: offset * 220,
-                        y: Math.abs(offset) * 7,
-                        scale: isActive ? 1 : 0.82,
-                        rotateY: 0,
-                        opacity: hidden ? 0 : isActive ? 1 : 0.42,
-                        zIndex: 10 - Math.abs(offset),
-                      }
-                    : {
-                        x: offset * 212,
-                        y: Math.abs(offset) * 9,
-                        z: isActive ? 72 : -Math.abs(offset) * 55,
-                        scale: isActive
-                          ? 1
-                          : 0.82 - Math.min(Math.abs(offset), 2) * 0.035,
-                        rotateY: offset === 0 ? 0 : offset < 0 ? 23 : -23,
-                        opacity: hidden
-                          ? 0
-                          : isActive
-                            ? 1
-                            : Math.abs(offset) === 1
-                              ? 0.48
-                              : 0.19,
-                        zIndex: 10 - Math.abs(offset),
-                      }
-                }
+                animate={{
+                  x: offset * 212,
+                  y: Math.abs(offset) * 9,
+                  z: isActive ? 72 : -Math.abs(offset) * 55,
+                  scale: isActive
+                    ? 1
+                    : 0.82 - Math.min(Math.abs(offset), 2) * 0.035,
+                  rotateY: offset === 0 ? 0 : offset < 0 ? 23 : -23,
+                  opacity: hidden
+                    ? 0
+                    : isActive
+                      ? 1
+                      : Math.abs(offset) === 1
+                        ? 0.48
+                        : 0.19,
+                  zIndex: 10 - Math.abs(offset),
+                }}
                 transition={{
                   type: "spring",
                   stiffness: 95,
@@ -94,7 +76,6 @@ export default function HologramPreview({
                 }}
                 onClick={clickCard}
                 disabled={locked || hidden}
-                aria-label={`${section.name}${isActive ? ", selected. Activate to open." : ", select section."}`}
                 aria-pressed={isActive}
                 aria-hidden={hidden}
                 tabIndex={hidden || !isActive ? -1 : 0}
@@ -113,11 +94,7 @@ export default function HologramPreview({
                     {section.metric}
                     <small>{section.metricLabel}</small>
                   </span>
-                  {isActive && (
-                    <span className="holo-open">
-                      OPEN <ArrowUpRight size={14} />
-                    </span>
-                  )}
+                  {isActive}
                 </span>
                 <span className="holo-card__scan" aria-hidden="true" />
               </motion.button>

@@ -9,8 +9,7 @@ function getAudioContext() {
   return audioContext;
 }
 
-export function playSound(name, enabled) {
-  if (!enabled) return;
+export function playSound(name) {
   const context = getAudioContext();
   if (!context) return;
   const presets = {

@@ -2,19 +2,19 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, SkipForward } from "lucide-react";
 
-export default function IntroSequence({ reducedMotion, onComplete }) {
+export default function IntroSequence({ onComplete }) {
   useEffect(() => {
-    const timer = window.setTimeout(onComplete, reducedMotion ? 80 : 2800);
+    const timer = window.setTimeout(onComplete, 2800);
     return () => window.clearTimeout(timer);
-  }, [onComplete, reducedMotion]);
+  }, [onComplete]);
 
   return (
     <motion.main
       className="intro-screen"
-      initial={reducedMotion ? false : { opacity: 0 }}
+      initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, scale: 1.025 }}
-      transition={{ duration: reducedMotion ? 0 : 0.5 }}
+      transition={{ duration: 0.5 }}
     >
       <div className="intro-stars" aria-hidden="true" />
       <div className="intro-meta">
@@ -30,12 +30,12 @@ export default function IntroSequence({ reducedMotion, onComplete }) {
         <div className="cosmic-emblem" aria-hidden="true">
           <motion.i
             className="cosmic-orb cosmic-orb--one"
-            animate={reducedMotion ? {} : { rotate: 360 }}
+            animate={{ rotate: 360 }}
             transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
           />
           <motion.i
             className="cosmic-orb cosmic-orb--two"
-            animate={reducedMotion ? {} : { rotate: -360 }}
+            animate={{ rotate: -360 }}
             transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
           />
           <div className="cosmic-core">
@@ -47,14 +47,14 @@ export default function IntroSequence({ reducedMotion, onComplete }) {
         </div>
         <motion.p
           className="intro-overline"
-          initial={reducedMotion ? false : { opacity: 0, y: 8 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
           AN INTERACTIVE PORTFOLIO
         </motion.p>
         <motion.h1
-          initial={reducedMotion ? false : { opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35 }}
         >
@@ -64,7 +64,7 @@ export default function IntroSequence({ reducedMotion, onComplete }) {
         </motion.h1>
         <motion.p
           className="intro-copy"
-          initial={reducedMotion ? false : { opacity: 0 }}
+          initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
         >
@@ -81,7 +81,7 @@ export default function IntroSequence({ reducedMotion, onComplete }) {
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{
-              duration: reducedMotion ? 0 : 2.3,
+              duration: 2.3,
               ease: "easeInOut",
             }}
           />
