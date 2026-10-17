@@ -21,7 +21,6 @@ export default function IntroSequence({ onComplete }) {
         <span className="brand-mark">
           <span className="brand-mark__dot" /> OMNITRIX OS
         </span>
-        <span>PERSONAL ARCHIVE · 001</span>
       </div>
       <button className="skip-button" type="button" onClick={onComplete}>
         Skip intro <SkipForward size={14} />

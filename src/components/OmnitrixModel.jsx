@@ -58,12 +58,6 @@ export default function OmnitrixModel({
         <span className="watch-screw watch-screw--three" />
         <span className="watch-screw watch-screw--four" />
       </div>
-      <div className="watch-caption">
-        <span>MK. X · PERSONAL ARCHIVE</span>
-        <span>
-          PRESS TO OPEN <b>↗</b>
-        </span>
-      </div>
     </div>
   );
 }

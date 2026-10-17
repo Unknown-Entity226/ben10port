@@ -168,7 +168,6 @@ export default function OmnitrixInterface({
           <ArrowLeft size={16} />
         </button>
         <div className="mobile-dock__center">
-          <span>FILE 0{activeIndex + 1} / 06</span>
           <strong>{selected.name}</strong>
           <div className="mobile-dock__dots" aria-label="Jump to section">
             {sectionMeta.map((section) => (
