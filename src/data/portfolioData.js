@@ -20,18 +20,44 @@ export const sectionIcons = {
   contact: Mail,
 };
 
-// Example content only: replace this object with the portfolio owner's details.
 export const profile = {
-  name: 'Your Name',
-  role: 'Your role or focus',
-  location: 'Your location or timezone',
-  email: 'hello@example.com',
-  intro: 'I turn curious ideas into thoughtful digital experiences. I care about the details people feel: fast interfaces, clear language, and software that makes complicated things easier.',
-  principles: ['Make it useful first', 'Keep the details human', 'Stay curious, ship often'],
-  education: [
-    { qualification: 'Your degree or qualification', institution: 'Your university or institution', period: 'YEAR — YEAR', detail: 'Add your field of study, notable coursework, awards, or certifications here.' },
+  name: 'Aarav Gupta',
+  role: 'Full-Stack Developer & AI Enthusiast',
+  location: 'New Delhi, India',
+  email: 'aaravgupta2012018@gmail.com',
+  intro:
+    'Full-stack developer and software engineering student focused on building scalable web applications and intelligent systems. Passionate about clean code, continuous learning, and crafting seamless user experiences.',
+  bio: [
+    'I am Aarav Gupta, a full-stack developer and software engineering student focused on building scalable web applications and intelligent systems. My expertise spans modern frontend frameworks, robust backend architectures, and integrating artificial intelligence to solve complex technical challenges.',
+    'Beyond traditional web development, I actively engage in quantitative finance research and build interactive web-based simulations. I thrive in competitive programming environments and am driven by a passion for clean code, continuous learning, and crafting seamless user experiences.',
   ],
-  socials: [],
+  principles: [
+    'Build scalable & intelligent systems',
+    'Clean code, continuous learning',
+    'Stay curious, ship often',
+  ],
+  education: [
+    {
+      qualification:
+        'B.Tech in Computer Science and Engineering - Artificial Intelligence (CSE-AI)',
+      institution: 'Guru Gobind Singh Indraprastha University (GGSIPU)',
+      period: '2023 — 2027',
+      detail:
+        'University School of Information, Communication and Technology (USICT). Specializing in artificial intelligence, full-stack systems, algorithmic engineering, and data architectures.',
+    },
+  ],
+  socials: [
+    { label: 'GitHub', href: 'https://github.com/Unknown-Entity226' },
+    {
+      label: 'LinkedIn',
+      href: 'https://www.linkedin.com/in/aarav-gupta-3402bb2b4/',
+    },
+    { label: 'LeetCode', href: 'https://leetcode.com/u/unknown-entity226/' },
+    {
+      label: 'Instagram',
+      href: 'https://www.instagram.com/_aaravv._.guptaa_/',
+    },
+  ],
 };
 
 export function isSectionId(value) {

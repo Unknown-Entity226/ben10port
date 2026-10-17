@@ -176,15 +176,25 @@ function AboutView() {
           <h3>
             Good work starts with <em>good questions.</em>
           </h3>
-          <p className="body-copy">
-            I like the part where a fuzzy problem starts to make sense:
-            listening, exploring a few directions, then building something clear
-            enough to use and solid enough to grow.
-          </p>
-          <p className="body-copy">
-            This archive is a snapshot of what I’m learning and making. It’s
-            always a work in progress, by design.
-          </p>
+          {profile.bio ? (
+            profile.bio.map((paragraph, index) => (
+              <p className="body-copy" key={index}>
+                {paragraph}
+              </p>
+            ))
+          ) : (
+            <>
+              <p className="body-copy">
+                I like the part where a fuzzy problem starts to make sense:
+                listening, exploring a few directions, then building something clear
+                enough to use and solid enough to grow.
+              </p>
+              <p className="body-copy">
+                This archive is a snapshot of what I’m learning and making. It’s
+                always a work in progress, by design.
+              </p>
+            </>
+          )}
         </section>
         <section className="panel-card principles-panel">
           <div className="panel-heading">
