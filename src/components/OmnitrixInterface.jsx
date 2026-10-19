@@ -86,6 +86,8 @@ export default function OmnitrixInterface({
               activeIndex={activeIndex}
               locked={locked}
               onActivate={onActivate}
+              onRotate={onRotate}
+              onGoToSection={onGoToSection}
             />
           </div>
           <div className="navigation-footer">
