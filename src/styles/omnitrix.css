@@ -943,15 +943,22 @@ a {
   height: auto;
   pointer-events: none;
   user-select: none;
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 25px rgba(140, 245, 189, 0.14));
+  transition: filter 0.3s ease;
+}
+
+.watch-wrap--locked .watch-dialer-image {
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 35px rgba(140, 245, 189, 0.4));
 }
 
 .watch-dialer-button {
   position: absolute;
   z-index: 4;
-  top: 33%;
-  left: 17%;
-  width: 66%;
-  height: 34%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 65%;
+  aspect-ratio: 1 / 1;
   border: 0;
   border-radius: 50%;
   background: transparent;
@@ -961,7 +968,7 @@ a {
 
 .watch-dialer-button:hover {
   background: rgba(140, 245, 189, .08);
-  box-shadow: 0 0 28px rgba(95, 255, 151, .38), inset 0 0 20px rgba(224, 255, 231, .16);
+  box-shadow: 0 0 32px rgba(140, 245, 189, .48), inset 0 0 22px rgba(184, 255, 214, .24);
 }
 
 .watch-dialer-button:disabled {

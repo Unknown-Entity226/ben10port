@@ -143,11 +143,7 @@ export default function OmnitrixInterface({
             <small>{selected.metricLabel}</small>
           </div>
           <div className="info-rail__rule" />
-          <div className="signal-row">
-            <ShieldCheck size={14} />
-            <span>ACCESS</span>
-            <b>OPEN</b>
-          </div>
+          
         </aside>
       </section>
       <div className="mobile-dock">

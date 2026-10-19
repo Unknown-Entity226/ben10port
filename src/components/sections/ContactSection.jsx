@@ -29,16 +29,7 @@ export default function ContactSection() {
 
   return (
     <div className="contact-view">
-      <div className="view-intro">
-        <span className="eyebrow">OPEN TRANSMISSION</span>
-        <h2>
-          Let’s make <em>something matter.</em>
-        </h2>
-        <p className="body-copy">
-          Have a project, a question, or an idea you can’t stop thinking about?
-          Send a signal.
-        </p>
-      </div>
+      
       <div className="contact-grid">
         <section className="panel-card contact-card">
           <span className="contact-icon">
@@ -68,7 +59,6 @@ export default function ContactSection() {
         <form className="panel-card contact-form" onSubmit={sendMessage}>
           <div className="panel-heading">
             <span>TRANSMIT A MESSAGE</span>
-            <span className="contact-form__id">MSG_001</span>
           </div>
           <label>
             Your name

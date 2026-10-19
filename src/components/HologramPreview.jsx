@@ -97,12 +97,6 @@ export default function HologramPreview({
           })}
         </div>
       </div>
-            <p className="projection-prompt">
-        <ActiveIcon size={13} />
-        <span>SELECTED FILE</span>
-        <b>{active.name.toUpperCase()}</b>
-        <span className="projection-prompt__hint">↵ ENTER TO OPEN</span>
-      </p>
     </section>
   );
 }
