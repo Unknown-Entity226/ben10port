@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { motion } from "framer-motion";
 import {
   ArrowLeft,
   ArrowRight,
@@ -17,6 +18,7 @@ export default function OmnitrixInterface({
   onRotate,
   onActivate,
   onGoToSection,
+  onReturnHome,
 }) {
   const touchStart = useRef(null);
   const wheelAt = useRef(0);
@@ -58,22 +60,45 @@ export default function OmnitrixInterface({
       <header className="topbar">
         <a
           className="brand"
-          href="#top"
-          onClick={(event) => event.preventDefault()}
+          href="#home"
+          onClick={(event) => {
+            event.preventDefault();
+            onReturnHome?.();
+          }}
+          title="Return to Standby Home"
         >
           <span className="brand-mark">
             <span className="brand-mark__dot" /> OMNITRIX
             <span className="brand__os">OS</span>
           </span>
+          <span className="brand-sub">ACTIVE DIAL</span>
         </a>
+        <div className="topbar-status">
+          <span className="live-dot" />
+          <span>DIAL ONLINE</span>
+          <span className="topbar-status__divider">|</span>
+          <button
+            type="button"
+            className="standby-toggle-btn"
+            onClick={onReturnHome}
+            title="Return to Standby Home"
+          >
+            STANDBY
+          </button>
+        </div>
       </header>
       <section
         className="nav-layout"
         aria-label="Omnitrix portfolio navigation"
       >
-        <aside className="desktop-rail">
+        <motion.aside
+          className="desktop-rail"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        >
           <SidebarNav activeSection={activeSection} onSelect={onGoToSection} />
-        </aside>
+        </motion.aside>
         <div className="nav-main">
           <div className="selection-scene">
             <HologramPreview
@@ -127,7 +152,12 @@ export default function OmnitrixInterface({
             </div>
           </div>
         </div>
-        <aside className="info-rail">
+        <motion.aside
+          className="info-rail"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        >
           <div className="active-file-icon">
             <span className="active-file-orbit" />
             <span className="active-file-orbit active-file-orbit--inner" />
@@ -144,7 +174,7 @@ export default function OmnitrixInterface({
           </div>
           <div className="info-rail__rule" />
           
-        </aside>
+        </motion.aside>
       </section>
       <div className="mobile-dock">
         <button

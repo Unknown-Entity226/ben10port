@@ -6,6 +6,8 @@ export function useKeyboardNav({
   activateSection,
   skipIntro,
   returnToDial,
+  triggerOmnitrix,
+  returnToHome,
 }) {
   useEffect(() => {
     function onKeyDown(event) {
@@ -21,10 +23,20 @@ export function useKeyboardNav({
       if (event.key === "Escape") {
         if (stage === "intro") {
           event.preventDefault();
-          skipIntro();
+          skipIntro?.();
         } else if (stage === "section") {
           event.preventDefault();
-          returnToDial();
+          returnToDial?.();
+        } else if (stage === "navigation" || stage === "preview") {
+          event.preventDefault();
+          returnToHome?.();
+        }
+        return;
+      }
+      if (stage === "home") {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          triggerOmnitrix?.();
         }
         return;
       }
@@ -42,5 +54,5 @@ export function useKeyboardNav({
     }
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [stage, rotateDial, activateSection, skipIntro, returnToDial]);
+  }, [stage, rotateDial, activateSection, skipIntro, returnToDial, triggerOmnitrix, returnToHome]);
 }

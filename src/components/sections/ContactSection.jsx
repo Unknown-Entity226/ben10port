@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Check, Copy, ExternalLink, Mail, Send } from "lucide-react";
+import { Check, Copy, Mail, Send } from "lucide-react";
 import { profile } from "../../data/portfolioData.js";
 
 export default function ContactSection() {
@@ -33,7 +33,11 @@ export default function ContactSection() {
       <div className="contact-grid">
         <section className="panel-card contact-card">
           <span className="contact-icon">
-            <Mail size={21} />
+            {profile.emailIcon ? (
+              <img src={profile.emailIcon} alt="Gmail" className="contact-gmail-icon" />
+            ) : (
+              <Mail size={21} />
+            )}
           </span>
           <a className="contact-email" href={`mailto:${profile.email}`}>
             {profile.email}
@@ -49,9 +53,19 @@ export default function ContactSection() {
                 href={social.href}
                 target="_blank"
                 rel="noreferrer"
+                className="social-link-btn"
+                title={social.label}
+                aria-label={social.label}
               >
-                {social.label}
-                <ExternalLink size={13} />
+                {social.icon ? (
+                  <img
+                    src={social.icon}
+                    alt={social.label}
+                    className="social-link-img"
+                  />
+                ) : (
+                  <span>{social.label}</span>
+                )}
               </a>
             ))}
           </div>

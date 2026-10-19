@@ -1,6 +1,11 @@
 import {
   BookOpen, BriefcaseBusiness, Code2, FolderKanban, Mail, UserRound,
 } from 'lucide-react';
+import githubLogo from '../assets/github_logo.png';
+import linkedinLogo from '../assets/linkedin_logo.png';
+import leetcodeIcon from '../assets/leetcodeicon.png';
+import instaIcon from '../assets/insta.png';
+import gmailIcon from '../assets/gmail.png';
 
 export const sectionMeta = [
   { id: 'about', index: 0, name: 'About', label: 'IDENTITY', summary: 'The mind behind the machine.', metric: '01', metricLabel: 'OPERATOR', accent: '#86f6c1' },
@@ -47,18 +52,36 @@ export const profile = {
     },
   ],
   socials: [
-    { label: 'GitHub', href: 'https://github.com/Unknown-Entity226' },
+    {
+      label: 'GitHub',
+      href: 'https://github.com/Unknown-Entity226',
+      icon: githubLogo,
+    },
     {
       label: 'LinkedIn',
       href: 'https://www.linkedin.com/in/aarav-gupta-3402bb2b4/',
+      icon: linkedinLogo,
     },
-    { label: 'LeetCode', href: 'https://leetcode.com/u/unknown-entity226/' },
+    {
+      label: 'LeetCode',
+      href: 'https://leetcode.com/u/unknown-entity226/',
+      icon: leetcodeIcon,
+    },
     {
       label: 'Instagram',
       href: 'https://www.instagram.com/_aaravv._.guptaa_/',
+      icon: instaIcon,
+    },
+    {
+      label: 'Gmail',
+      href: 'mailto:aaravgupta2012018@gmail.com',
+      icon: gmailIcon,
     },
   ],
+  emailIcon: gmailIcon,
 };
+
+export { gmailIcon };
 
 export function isSectionId(value) {
   return sectionMeta.some((section) => section.id === value);

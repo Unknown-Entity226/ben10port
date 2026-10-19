@@ -7,7 +7,7 @@ function initialState() {
     typeof window === "undefined" ? "" : window.location.hash.slice(1);
   return isSectionId(hash)
     ? { stage: "section", section: hash }
-    : { stage: "intro", section: "about" };
+    : { stage: "home", section: "about" };
 }
 
 export function useOmnitrixState() {
@@ -29,6 +29,8 @@ export function useOmnitrixState() {
       if (isSectionId(hash)) {
         setActiveSection(hash);
         setStage("section");
+      } else if (hash === "home" || !hash) {
+        setStage("home");
       } else if (stage === "section" || stage === "returning") {
         setStage("navigation");
       }
@@ -103,6 +105,19 @@ export function useOmnitrixState() {
     timer.current = window.setTimeout(() => setStage("navigation"), 360);
   }, [stage]);
 
+  const triggerOmnitrix = useCallback(() => {
+    window.clearTimeout(timer.current);
+    playSound("activate");
+    setStage("navigation");
+  }, []);
+
+  const returnToHome = useCallback(() => {
+    window.clearTimeout(timer.current);
+    playSound("return");
+    writeHash("");
+    setStage("home");
+  }, []);
+
   return {
     stage,
     activeSection,
@@ -113,5 +128,7 @@ export function useOmnitrixState() {
     goToSection,
     activateSection,
     returnToDial,
+    triggerOmnitrix,
+    returnToHome,
   };
 }
