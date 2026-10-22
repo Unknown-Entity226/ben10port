@@ -1,14 +1,6 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
 import { sectionIcons, sectionMeta } from "../data/portfolioData.js";
-
-function relativeOffset(index, activeIndex) {
-  const count = sectionMeta.length;
-  let offset = index - activeIndex;
-  if (offset > count / 2) offset -= count;
-  if (offset < -count / 2) offset += count;
-  return offset;
-}
+import { relativeOffset } from "../utils/dial.js";
 
 export default function HologramPreview({
   activeIndex,
@@ -89,7 +81,7 @@ export default function HologramPreview({
                 </span>
                 <span className="holo-card__name">{section.name}</span>
                 <span className="holo-card__bottom">
-                  {isActive}
+                  {isActive ? "SELECTED" : ""}
                 </span>
                 <span className="holo-card__scan" aria-hidden="true" />
               </motion.button>

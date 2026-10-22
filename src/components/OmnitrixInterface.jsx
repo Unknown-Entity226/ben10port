@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import {
   ArrowLeft,
   ArrowRight,
-  ShieldCheck,
 } from "lucide-react";
 import { sectionIcons, sectionMeta } from "../data/portfolioData.js";
 import HologramPreview from "./HologramPreview.jsx";

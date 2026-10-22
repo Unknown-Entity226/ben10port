@@ -2,14 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { sectionMeta } from "../data/portfolioData.js";
 import { readRingRotation } from "../utils/omnitrixStorage.js";
-
-function relativeOffset(index, activeIndex) {
-  const count = sectionMeta.length;
-  let offset = index - activeIndex;
-  if (offset > count / 2) offset -= count;
-  if (offset < -count / 2) offset += count;
-  return offset;
-}
+import { relativeOffset } from "../utils/dial.js";
 
 // Polar coordinate helper (0 deg is 12 o'clock, clockwise; in math polar: 90 deg is top)
 const cx = 250;

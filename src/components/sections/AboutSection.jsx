@@ -1,4 +1,4 @@
-import { ArrowUpRight, MapPin } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import { profile } from '../../data/portfolioData.js';
 import profileImage from '../../assets/image.png';
 export default function AboutSection() {
