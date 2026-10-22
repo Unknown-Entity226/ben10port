@@ -947,7 +947,14 @@ a {
   position: absolute;
   z-index: 2;
   left: 50%;
+  top: 100%;
+  transform: translate(-50%, -100%);
   width: min(345px, 86vw);
+}
+
+.watch-wrap--standby {
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .watch-dialer-image {

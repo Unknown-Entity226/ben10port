@@ -15,6 +15,7 @@ export default function OmnitrixModel({
   return (
     <motion.div
       className={`watch-wrap${locked ? " watch-wrap--locked" : ""}${isStandby ? " watch-wrap--standby" : ""}`}
+      initial={false}
       animate={{
         x: "-50%",
         top: isStandby ? "50%" : "100%",
@@ -52,23 +53,6 @@ export default function OmnitrixModel({
         }
       >
         {isStandby && <span className="home-core-beacon" />}
-        {isStandby && (
-          <span className="home-core-icon" aria-hidden="true">
-            <svg viewBox="0 0 100 100" className="home-hourglass-svg">
-              <polygon
-                points="22,18 78,18 50,48"
-                fill="#bef264"
-                opacity="0.85"
-              />
-              <polygon
-                points="22,82 78,82 50,52"
-                fill="#bef264"
-                opacity="0.85"
-              />
-              <circle cx="50" cy="50" r="8" fill="#ffffff" />
-            </svg>
-          </span>
-        )}
       </button>
     </motion.div>
   );
