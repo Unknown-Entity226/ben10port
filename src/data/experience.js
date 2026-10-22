@@ -8,8 +8,8 @@ export const experienceData = [
     type: "Internship",
     
     description: [
-      "Conducting cryptanalysis of stream ciphers and developing computational models for the A5/1 encryption algorithm.",
-      "Applying advanced algorithmic engineering patterns and mathematical modeling to evaluate structural vulnerabilities."
+      "Conducted cryptanalysis of stream ciphers and developed computational models for the A5/1 encryption algorithm.",
+      "Applied advanced algorithmic engineering patterns and mathematical modeling to evaluate structural vulnerabilities."
     ],
     skills: [
       "Cryptanalysis",
