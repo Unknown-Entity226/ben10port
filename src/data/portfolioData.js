@@ -6,9 +6,27 @@ import linkedinLogo from '../assets/linkedin_logo.png';
 import leetcodeIcon from '../assets/leetcodeicon.png';
 import instaIcon from '../assets/insta.png';
 import gmailIcon from '../assets/gmail.png';
-import { skills } from './skills.js';
 import { projects } from './projects.js';
+import { skills } from './skills.js';
 import { experienceData } from './experience.js';
+
+export const sectionMeta = [
+  { id: 'about', index: 0, name: 'About', label: 'IDENTITY', summary: 'The mind behind the machine.', metric: '01', metricLabel: 'OPERATOR', accent: '#86f6c1' },
+  { id: 'skills', index: 1, name: 'Skills', label: 'ARSENAL', summary: 'Tools, systems & techniques.', metric: String(skills.length).padStart(2, '0'), metricLabel: 'TRACKS', accent: '#70e8d0' },
+  { id: 'projects', index: 2, name: 'Projects', label: 'FIELD LOGS', summary: 'Things built out in the wild.', metric: String(projects.length).padStart(2, '0'), metricLabel: 'BUILDS', accent: '#b5f77d' },
+  { id: 'experience', index: 3, name: 'Experience', label: 'MISSIONS', summary: 'A timeline of work in motion.', metric: String(experienceData.length).padStart(2, '0'), metricLabel: 'CHAPTERS', accent: '#8de7ff' },
+  { id: 'education', index: 4, name: 'Education', label: 'ORIGIN', summary: 'The foundations and the fuel.', metric: '01', metricLabel: 'MILESTONE', accent: '#b1a3ff' },
+  { id: 'contact', index: 5, name: 'Contact', label: 'TRANSMISSION', summary: 'Have a good mission in mind?', metric: 'OPEN', metricLabel: 'SIGNAL', accent: '#f5d97c' },
+];
+
+export const sectionIcons = {
+  about: UserRound,
+  skills: Code2,
+  projects: FolderKanban,
+  experience: BriefcaseBusiness,
+  education: BookOpen,
+  contact: Mail,
+};
 
 export const profile = {
   name: 'Aarav Gupta',
@@ -64,26 +82,6 @@ export const profile = {
     },
   ],
   emailIcon: gmailIcon,
-};
-
-const formatMetric = (count) => String(count).padStart(2, '0');
-
-export const sectionMeta = [
-  { id: 'about', index: 0, name: 'About', label: 'IDENTITY', summary: 'The mind behind the machine.', metric: '01', metricLabel: 'OPERATOR', accent: '#86f6c1' },
-  { id: 'skills', index: 1, name: 'Skills', label: 'ARSENAL', summary: 'Tools, systems & techniques.', metric: formatMetric(skills.length), metricLabel: 'TRACKS', accent: '#70e8d0' },
-  { id: 'projects', index: 2, name: 'Projects', label: 'FIELD LOGS', summary: 'Things built out in the wild.', metric: formatMetric(projects.length), metricLabel: 'BUILDS', accent: '#b5f77d' },
-  { id: 'experience', index: 3, name: 'Experience', label: 'MISSIONS', summary: 'A timeline of work in motion.', metric: formatMetric(experienceData.length), metricLabel: 'CHAPTERS', accent: '#8de7ff' },
-  { id: 'education', index: 4, name: 'Education', label: 'ORIGIN', summary: 'The foundations and the fuel.', metric: formatMetric(profile.education.length), metricLabel: 'MILESTONE', accent: '#b1a3ff' },
-  { id: 'contact', index: 5, name: 'Contact', label: 'TRANSMISSION', summary: 'Have a good mission in mind?', metric: 'OPEN', metricLabel: 'SIGNAL', accent: '#f5d97c' },
-];
-
-export const sectionIcons = {
-  about: UserRound,
-  skills: Code2,
-  projects: FolderKanban,
-  experience: BriefcaseBusiness,
-  education: BookOpen,
-  contact: Mail,
 };
 
 export { gmailIcon };

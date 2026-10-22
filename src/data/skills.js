@@ -14,6 +14,7 @@ export const skills = [
             "HTML5",
             "CSS3",
             "Tailwind CSS",
+            "Figma",
         ]
     },
     {
@@ -34,7 +35,7 @@ export const skills = [
             "Machine Learning Fundamentals",
             "OpenCV",
             "Cryptanalysis",
-            // TODO(aarav): Add the specific ML libraries used.
+            // TODO(aarav): Add the specific ML libraries you used (e.g. scikit-learn, TensorFlow, PyTorch)
         ]
     },
     {
@@ -43,9 +44,8 @@ export const skills = [
         items: [
             "Git & GitHub",
             "VS Code",
-            "Figma",
-            "Kotlin",
             "Android Studio",
+            "Kotlin",
             "Tiled"
         ]
     },

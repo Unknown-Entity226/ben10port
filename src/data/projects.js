@@ -2,6 +2,7 @@ import volumebooster from '../assets/volumebooster.png';
 import cropguide from '../assets/cropguide.png';
 import civic from '../assets/civic.png'
 import akhada from '../assets/akhada.png'
+import leetcode from '../assets/leetcodeicon.png'
 import crypt from "../assets/crypt.png"
 
 export const projects = [
@@ -48,19 +49,19 @@ export const projects = [
     {
         id: 5,
         icon: crypt,
-        title: "Cryptanalysis of the A5/1 Stream Cipher", 
-        description:     "An academically structured research project comparing classical and ML-based cryptanalysis of the A5/1 GSM stream cipher. Implements the cipher from scratch, a guess-and-determine attack, a 1M-example synthetic dataset, and 7 ML models",
-        github: "https://github.com/Unknown-Entity226/a5-1-stream-cipher", 
-        live:"", 
-        tags: ["Python", "Cryptanalysis","Machine Learning", "A5/1 algorithm"]
+        title: "Cryptanalysis of the A5/1 Stream Cipher",
+        description: "An academically structured research project comparing classical and ML-based cryptanalysis of the A5/1 GSM stream cipher. Implements the cipher from scratch, a guess-and-determine attack, a 1M-example synthetic dataset, and 7 ML models",
+        github: "https://github.com/Unknown-Entity226/a5-1-stream-cipher",
+        live: "",
+        tags: ["Python", "Cryptanalysis", "Machine Learning", "A5/1 algorithm"]
     },
     {
         id: 6,
-        icon: "",
+        icon: leetcode,
         title: "Omnitrix OS Portfolio",
-        description: "An interactive portfolio presented as an Omnitrix-inspired interface.",
+        description: "This portfolio — an Omnitrix-themed interactive OS experience built with React 19 and Vite 6. Features a rotating hologram dial, hash deep-links, keyboard/touch/wheel navigation, a mobile dock, and a mailto contact form.",
         github: "https://github.com/Unknown-Entity226/ben10port",
-        live: "https://guptaaarav-portfolio.vercel.app/",
+        live: "", // TODO(aarav): add deployed URL once available
         tags: ["React", "Vite", "Framer Motion", "SVG"],
     }
 ];
