@@ -352,7 +352,7 @@ export default function HologramRing({
             damping: 19,
             mass: 0.8,
           }}
-          style={{ transformOrigin: "250px 250px" }}
+          style={{ transformOrigin: "250px 250px", willChange: "transform" }}
         >
           {/* 6 Sectors (dashed center rings removed!) */}
           {sectorPaths.map((sec) => {
@@ -434,16 +434,21 @@ export default function HologramRing({
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
-                    {/* 2. Vivid foreground: luminescent white for active, neon lime for inactive */}
+                    {/* 2. Vivid foreground: luminescent white for active, neon lime for inactive.
+                        Note: SVG blur filters are intentionally omitted here — this element
+                        is inside the rotating group and applying filters per-frame forces
+                        the browser to re-rasterize every animation tick (jank on mid-range
+                        devices). The high-contrast dark-outline + bright-stroke already
+                        makes symbols clearly legible. The glow effect is preserved via CSS
+                        drop-shadow on the wrapper (.holo-ring-container) below. */}
                     <use
                       href={`#${symId}`}
                       stroke={isSelected ? "#ffffff" : "#bef264"}
                       strokeWidth={isSelected ? 2.6 : 2.2}
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      filter={isSelected ? "url(#ringActiveGlow)" : "url(#ringHoloGlow)"}
                       style={{
-                        transition: "stroke 0.25s ease, filter 0.25s ease",
+                        transition: "stroke 0.25s ease",
                       }}
                     />
                   </g>
