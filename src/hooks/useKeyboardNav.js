@@ -11,15 +11,8 @@ export function useKeyboardNav({
 }) {
   useEffect(() => {
     function onKeyDown(event) {
-      if (event.repeat) return;
-      const target = event.target;
-      const typing =
-        target instanceof HTMLElement &&
-        (target.isContentEditable ||
-          ["INPUT", "TEXTAREA", "SELECT", "BUTTON", "A"].includes(
-            target.tagName,
-          ));
-      if (typing || event.altKey || event.ctrlKey || event.metaKey) return;
+      if (event.repeat || event.altKey || event.ctrlKey || event.metaKey) return;
+
       if (event.key === "Escape") {
         if (stage === "intro") {
           event.preventDefault();
@@ -33,6 +26,15 @@ export function useKeyboardNav({
         }
         return;
       }
+
+      const target = event.target;
+      const typing =
+        target instanceof HTMLElement &&
+        (target.isContentEditable ||
+          ["INPUT", "TEXTAREA", "SELECT", "BUTTON", "A"].includes(
+            target.tagName,
+          ));
+      if (typing) return;
       if (stage === "home") {
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();

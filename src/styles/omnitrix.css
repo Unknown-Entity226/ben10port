@@ -931,10 +931,8 @@ a {
 .watch-wrap {
   position: absolute;
   z-index: 2;
-  bottom: 0;
   left: 50%;
   width: min(345px, 86vw);
-  transform: translateX(-50%);
 }
 
 .watch-dialer-image {
@@ -2850,7 +2848,6 @@ a {
   }
 
   .watch-wrap {
-    bottom: 0;
     width: min(345px, 86vw);
   }
 
@@ -3581,4 +3578,14 @@ a {
   color: var(--green);
   background: rgba(132, 204, 22, 0.16);
   box-shadow: 0 0 14px rgba(132, 204, 22, 0.35);
+}
+
+.home-prompt--overlay {
+  position: absolute;
+  top: calc(50% + 220px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  margin-top: 0;
+  white-space: nowrap;
 }

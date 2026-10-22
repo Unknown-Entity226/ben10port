@@ -19,20 +19,24 @@ export default function OmnitrixInterface({
   onActivate,
   onGoToSection,
   onReturnHome,
+  onTriggerStandby,
 }) {
   const touchStart = useRef(null);
   const wheelAt = useRef(0);
+  const isStandby = stage === "home";
   const selected = sectionMeta[activeIndex] || sectionMeta[0];
   const ActiveIcon =
     (activeSection && sectionIcons[activeSection]) ||
     sectionIcons[selected?.id] ||
     (() => null);
+
   function handleTouchStart(event) {
+    if (isStandby) return;
     const touch = event.changedTouches[0];
     touchStart.current = { x: touch.clientX, y: touch.clientY };
   }
   function handleTouchEnd(event) {
-    if (!touchStart.current) return;
+    if (isStandby || !touchStart.current) return;
     const touch = event.changedTouches[0];
     const dx = touch.clientX - touchStart.current.x;
     const dy = touch.clientY - touchStart.current.y;
@@ -41,7 +45,7 @@ export default function OmnitrixInterface({
     touchStart.current = null;
   }
   function handleWheel(event) {
-    if (Math.abs(event.deltaY) < 18) return;
+    if (isStandby || Math.abs(event.deltaY) < 18) return;
     const now = Date.now();
     if (now - wheelAt.current < 250) return;
     event.preventDefault();
@@ -51,7 +55,7 @@ export default function OmnitrixInterface({
 
   return (
     <main
-      className={`omnitrix-page${stage === "preview" ? " omnitrix-page--preview" : ""}`}
+      className={`omnitrix-page${stage === "preview" ? " omnitrix-page--preview" : ""}${isStandby ? " omnitrix-page--standby" : ""}`}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onWheel={handleWheel}
@@ -63,64 +67,135 @@ export default function OmnitrixInterface({
           href="#home"
           onClick={(event) => {
             event.preventDefault();
-            onReturnHome?.();
+            if (!isStandby) onReturnHome?.();
           }}
-          title="Return to Standby Home"
+          title={isStandby ? "Omnitrix Standby Mode" : "Return to Standby Home"}
         >
           <span className="brand-mark">
             <span className="brand-mark__dot" /> OMNITRIX
             <span className="brand__os">OS</span>
           </span>
-          <span className="brand-sub">ACTIVE DIAL</span>
+          <span className="brand-sub">
+            {isStandby ? "STANDBY MODE" : "ACTIVE DIAL"}
+          </span>
         </a>
         <div className="topbar-status">
-          <span className="live-dot" />
-          <span>DIAL ONLINE</span>
+          <span className={`live-dot${isStandby ? "" : " live-dot--active"}`} />
+          <span>{isStandby ? "STANDBY" : "DIAL ONLINE"}</span>
           <span className="topbar-status__divider">|</span>
-          <button
-            type="button"
-            className="standby-toggle-btn"
-            onClick={onReturnHome}
-            title="Return to Standby Home"
-          >
-            STANDBY
-          </button>
+          {isStandby ? (
+            <span>CLICK CORE TO INITIALIZE</span>
+          ) : (
+            <button
+              type="button"
+              className="standby-toggle-btn"
+              onClick={onReturnHome}
+              title="Return to Standby Home"
+            >
+              STANDBY
+            </button>
+          )}
         </div>
       </header>
       <section
         className="nav-layout"
         aria-label="Omnitrix portfolio navigation"
       >
+        {/* Left Sidenav Bar: animates in from left */}
         <motion.aside
           className="desktop-rail"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          animate={{
+            x: isStandby ? -140 : 0,
+            opacity: isStandby ? 0 : 1,
+          }}
+          transition={{
+            duration: 0.65,
+            delay: isStandby ? 0 : 0.25,
+            ease: [0.2, 0.8, 0.2, 1],
+          }}
+          style={{ pointerEvents: isStandby ? "none" : "auto" }}
         >
           <SidebarNav activeSection={activeSection} onSelect={onGoToSection} />
         </motion.aside>
+
         <div className="nav-main">
           <div className="selection-scene">
-            <HologramPreview
-              activeIndex={activeIndex}
-              locked={locked}
-              onRotate={onRotate}
-              onActivate={onActivate}
-            />
+            {/* Hologram Preview: floats down into view */}
+            <motion.div
+              style={{
+                width: "100%",
+                pointerEvents: isStandby ? "none" : "auto",
+              }}
+              aria-hidden={isStandby}
+              inert={isStandby}
+              animate={{
+                opacity: isStandby ? 0 : 1,
+                y: isStandby ? -30 : 0,
+                scale: isStandby ? 0.94 : 1,
+              }}
+              transition={{
+                duration: 0.6,
+                delay: isStandby ? 0 : 0.35,
+                ease: "easeOut",
+              }}
+            >
+              <HologramPreview
+                activeIndex={activeIndex}
+                locked={locked || isStandby}
+                onRotate={onRotate}
+                onActivate={onActivate}
+              />
+            </motion.div>
+
+            {/* Watch with ease-in-out glide from center to bottom */}
             <OmnitrixModel
               activeIndex={activeIndex}
               locked={locked}
+              isStandby={isStandby}
               onActivate={onActivate}
               onRotate={onRotate}
               onGoToSection={onGoToSection}
+              onTriggerStandby={onTriggerStandby}
             />
+
+            {/* Tactical Standby Prompt beneath watch in center */}
+            <motion.div
+              className="home-prompt home-prompt--overlay"
+              animate={{
+                opacity: isStandby ? 1 : 0,
+                y: isStandby ? 0 : 25,
+              }}
+              transition={{ duration: 0.4, delay: isStandby ? 0.2 : 0 }}
+              style={{ pointerEvents: isStandby ? "auto" : "none" }}
+              onClick={onTriggerStandby}
+              role="button"
+              tabIndex={0}
+            >
+              <span className="home-prompt__brackets">[</span>
+              <span className="home-prompt__text">CLICK CORE TO ACTIVATE</span>
+              <span className="home-prompt__brackets">]</span>
+            </motion.div>
           </div>
-          <div className="navigation-footer">
+
+          {/* Navigation Footer: slides up from bottom */}
+          <motion.div
+            className="navigation-footer"
+            animate={{
+              opacity: isStandby ? 0 : 1,
+              y: isStandby ? 30 : 0,
+            }}
+            transition={{
+              duration: 0.55,
+              delay: isStandby ? 0 : 0.28,
+              ease: "easeOut",
+            }}
+            style={{ pointerEvents: isStandby ? "none" : "auto" }}
+          >
             <div className="dial-controls">
               <button
                 type="button"
                 onClick={() => onRotate("prev")}
-                disabled={locked}
+                disabled={locked || isStandby}
                 aria-label="Previous section"
               >
                 <ArrowLeft size={16} />
@@ -129,7 +204,7 @@ export default function OmnitrixInterface({
               <button
                 type="button"
                 onClick={() => onRotate("next")}
-                disabled={locked}
+                disabled={locked || isStandby}
                 aria-label="Next section"
               >
                 <ArrowRight size={16} />
@@ -150,13 +225,22 @@ export default function OmnitrixInterface({
                 <kbd>↵</kbd> SELECT
               </span>
             </div>
-          </div>
+          </motion.div>
         </div>
+
+        {/* Right Info Area: animates in from right */}
         <motion.aside
           className="info-rail"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          animate={{
+            x: isStandby ? 140 : 0,
+            opacity: isStandby ? 0 : 1,
+          }}
+          transition={{
+            duration: 0.65,
+            delay: isStandby ? 0 : 0.25,
+            ease: [0.2, 0.8, 0.2, 1],
+          }}
+          style={{ pointerEvents: isStandby ? "none" : "auto" }}
         >
           <div className="active-file-icon">
             <span className="active-file-orbit" />
@@ -173,44 +257,45 @@ export default function OmnitrixInterface({
             <small>{selected.metricLabel}</small>
           </div>
           <div className="info-rail__rule" />
-          
         </motion.aside>
       </section>
-      <div className="mobile-dock">
-        <button
-          className="mobile-dock__arrow"
-          type="button"
-          aria-label="Previous section"
-          onClick={() => onRotate("prev")}
-          disabled={locked}
-        >
-          <ArrowLeft size={16} />
-        </button>
-        <div className="mobile-dock__center">
-          <strong>{selected.name}</strong>
-          <div className="mobile-dock__dots" aria-label="Jump to section">
-            {sectionMeta.map((section) => (
-              <button
-                key={section.id}
-                type="button"
-                aria-label={`Open ${section.name}`}
-                aria-pressed={section.id === activeSection}
-                onClick={() => onGoToSection(section.id)}
-                disabled={locked}
-              />
-            ))}
+      {!isStandby && (
+        <div className="mobile-dock">
+          <button
+            className="mobile-dock__arrow"
+            type="button"
+            aria-label="Previous section"
+            onClick={() => onRotate("prev")}
+            disabled={locked}
+          >
+            <ArrowLeft size={16} />
+          </button>
+          <div className="mobile-dock__center">
+            <strong>{selected.name}</strong>
+            <div className="mobile-dock__dots" aria-label="Jump to section">
+              {sectionMeta.map((section) => (
+                <button
+                  key={section.id}
+                  type="button"
+                  aria-label={`Open ${section.name}`}
+                  aria-pressed={section.id === activeSection}
+                  onClick={() => onGoToSection(section.id)}
+                  disabled={locked}
+                />
+              ))}
+            </div>
           </div>
+          <button
+            className="mobile-dock__arrow"
+            type="button"
+            aria-label="Next section"
+            onClick={() => onRotate("next")}
+            disabled={locked}
+          >
+            <ArrowRight size={16} />
+          </button>
         </div>
-        <button
-          className="mobile-dock__arrow"
-          type="button"
-          aria-label="Next section"
-          onClick={() => onRotate("next")}
-          disabled={locked}
-        >
-          <ArrowRight size={16} />
-        </button>
-      </div>
+      )}
     </main>
   );
 }

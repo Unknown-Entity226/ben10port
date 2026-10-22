@@ -25,13 +25,16 @@ export function useOmnitrixState() {
 
   useEffect(() => {
     function syncRoute() {
+      window.clearTimeout(timer.current);
+      timer.current = null;
+
       const hash = window.location.hash.slice(1);
       if (isSectionId(hash)) {
         setActiveSection(hash);
         setStage("section");
       } else if (hash === "home" || !hash) {
         setStage("home");
-      } else if (stage === "section" || stage === "returning") {
+      } else {
         setStage("navigation");
       }
     }
@@ -41,7 +44,7 @@ export function useOmnitrixState() {
       window.removeEventListener("hashchange", syncRoute);
       window.removeEventListener("popstate", syncRoute);
     };
-  }, [stage]);
+  }, []);
 
   const skipIntro = useCallback(
     () => setStage((current) => (current === "intro" ? "navigation" : current)),
@@ -75,14 +78,21 @@ export function useOmnitrixState() {
 
   const goToSection = useCallback(
     (section) => {
-      if (isLocked) return;
+      if (
+        stage !== "navigation" &&
+        stage !== "preview" &&
+        stage !== "section"
+      ) {
+        return;
+      }
       window.clearTimeout(timer.current);
+      timer.current = null;
       setActiveSection(section);
       setStage("section");
       writeHash(section);
       playSound("click");
     },
-    [isLocked],
+    [stage],
   );
 
   const activateSection = useCallback(() => {

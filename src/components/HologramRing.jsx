@@ -103,6 +103,7 @@ export default function HologramRing({
   onRotate,
   onActivate,
   onSelect,
+  isStandby = false,
 }) {
   const prevIndexRef = useRef(activeIndex);
   const [rotationAngle, setRotationAngle] = useState(0);
@@ -117,7 +118,7 @@ export default function HologramRing({
   }, [activeIndex]);
 
   const handleSectorClick = (index) => {
-    if (locked) return;
+    if (locked || isStandby) return;
     if (index === activeIndex) {
       onActivate?.();
     } else if (onSelect && sectionMeta[index]?.id) {
@@ -129,7 +130,7 @@ export default function HologramRing({
   };
 
   const handleActivePanelClick = () => {
-    if (locked) return;
+    if (locked || isStandby) return;
     onActivate?.();
   };
 
@@ -138,12 +139,23 @@ export default function HologramRing({
       className="holo-ring-container"
       role="region"
       aria-label="Omnitrix Hologram Ring"
+      style={{ pointerEvents: isStandby ? "none" : "auto" }}
     >
-      <svg
+      <motion.svg
         className="holo-ring-svg"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 500 500"
         fill="none"
+        animate={{
+          scale: isStandby ? 0 : 1,
+          opacity: isStandby ? 0 : 1,
+        }}
+        transition={{
+          duration: 0.6,
+          delay: isStandby ? 0 : 0.4,
+          ease: [0.34, 1.56, 0.64, 1],
+        }}
+        style={{ transformOrigin: "250px 250px" }}
       >
         <defs>
           <filter
@@ -495,7 +507,7 @@ export default function HologramRing({
           fill="none"
           opacity="0.85"
         />
-      </svg>
+      </motion.svg>
     </div>
   );
 }

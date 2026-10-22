@@ -1,6 +1,5 @@
 import { AnimatePresence } from "framer-motion";
 import ActivationTransition from "./components/ActivationTransition.jsx";
-import HomeSection from "./components/HomeSection.jsx";
 import IntroSequence from "./components/IntroSequence.jsx";
 import OmnitrixInterface from "./components/OmnitrixInterface.jsx";
 import PortfolioSection from "./components/PortfolioSection.jsx";
@@ -24,33 +23,26 @@ export default function App() {
   return (
     <div className="app-shell">
       <AnimatePresence mode="wait">
-        {omnitrix.stage === "home" && (
-          <HomeSection
-            key="home"
-            onTrigger={omnitrix.triggerOmnitrix}
-          />
-        )}
         {omnitrix.stage === "intro" && (
           <IntroSequence
             key="intro"
             onComplete={omnitrix.skipIntro}
           />
         )}
-        {!showingPortfolio &&
-          omnitrix.stage !== "intro" &&
-          omnitrix.stage !== "home" && (
-            <OmnitrixInterface
-              key="navigation"
-              stage={omnitrix.stage}
-              activeSection={omnitrix.activeSection}
-              activeIndex={omnitrix.activeIndex}
-              locked={omnitrix.isLocked}
-              onRotate={omnitrix.rotateDial}
-              onActivate={omnitrix.activateSection}
-              onGoToSection={omnitrix.goToSection}
-              onReturnHome={omnitrix.returnToHome}
-            />
-          )}
+        {!showingPortfolio && omnitrix.stage !== "intro" && (
+          <OmnitrixInterface
+            key="interface"
+            stage={omnitrix.stage}
+            activeSection={omnitrix.activeSection}
+            activeIndex={omnitrix.activeIndex}
+            locked={omnitrix.isLocked}
+            onRotate={omnitrix.rotateDial}
+            onActivate={omnitrix.activateSection}
+            onGoToSection={omnitrix.goToSection}
+            onReturnHome={omnitrix.returnToHome}
+            onTriggerStandby={omnitrix.triggerOmnitrix}
+          />
+        )}
         {showingPortfolio && (
           <PortfolioSection
             key="portfolio"
