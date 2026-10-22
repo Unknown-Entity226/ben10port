@@ -125,9 +125,23 @@ export default function HologramRing({
     }
   };
 
+  const handleSectorKeyDown = (event, index) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleSectorClick(index);
+    }
+  };
+
   const handleActivePanelClick = () => {
     if (locked || isStandby) return;
     onActivate?.();
+  };
+
+  const handleActivePanelKeyDown = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleActivePanelClick();
+    }
   };
 
   return (
@@ -276,6 +290,7 @@ export default function HologramRing({
         {/* 2. Top Active Selector Panel Bed/Background (rendered behind wheel) */}
         <g
           className="holo-active-panel-bg"
+          aria-hidden="true"
           onClick={handleActivePanelClick}
           style={{ cursor: locked ? "wait" : "pointer", pointerEvents: "auto" }}
         >
@@ -357,6 +372,7 @@ export default function HologramRing({
           {/* 6 Sectors (dashed center rings removed!) */}
           {sectorPaths.map((sec) => {
             const isSelected = sec.index === activeIndex;
+            const sectionName = sectionMeta[sec.index]?.name || `Section ${sec.index + 1}`;
             return (
               <path
                 key={sec.index}
@@ -373,7 +389,12 @@ export default function HologramRing({
                 }
                 strokeWidth={isSelected ? "1.5" : "1"}
                 className={`holo-sector holo-sector-${sec.index}`}
+                role="button"
+                tabIndex={isStandby || locked ? -1 : 0}
+                aria-label={isSelected ? `Open ${sectionName}` : `Select ${sectionName}`}
+                aria-pressed={isSelected}
                 onClick={() => handleSectorClick(sec.index)}
+                onKeyDown={(e) => handleSectorKeyDown(e, sec.index)}
                 style={{ cursor: locked ? "wait" : "pointer", pointerEvents: "auto" }}
               />
             );
@@ -408,16 +429,21 @@ export default function HologramRing({
             .map((sec) => {
               const symId = symbolIds[sec.index];
               const isSelected = sec.index === activeIndex;
+              const sectionName = sectionMeta[sec.index]?.name || `Section ${sec.index + 1}`;
               return (
                 <g
                   key={sec.index}
                   transform={`translate(${sec.pos[0].toFixed(2)}, ${sec.pos[1].toFixed(2)}) rotate(${sec.centerDeg})`}
                   className={`holo-symbol holo-symbol-${sec.index} ${isSelected ? "holo-symbol-active" : ""}`}
+                  role="button"
+                  tabIndex={isStandby || locked ? -1 : 0}
+                  aria-label={isSelected ? `Open ${sectionName}` : `Select ${sectionName}`}
                   style={{
                     cursor: locked ? "wait" : "pointer",
                     pointerEvents: "auto",
                   }}
                   onClick={() => handleSectorClick(sec.index)}
+                  onKeyDown={(e) => handleSectorKeyDown(e, sec.index)}
                 >
                   <g
                     transform={`scale(${isSelected ? 1.68 : 1.28}) translate(-12, -12)`}
@@ -461,9 +487,12 @@ export default function HologramRing({
         <g
           className="holo-active-panel-frame"
           filter="url(#ringActiveGlow)"
+          role="button"
+          tabIndex={isStandby || locked ? -1 : 0}
+          aria-label={`Open ${sectionMeta[activeIndex]?.name || "section"}`}
           onClick={handleActivePanelClick}
+          onKeyDown={handleActivePanelKeyDown}
           style={{ cursor: locked ? "wait" : "pointer", pointerEvents: "auto" }}
-          aria-label={`Selected section: ${sectionMeta[activeIndex]?.name || ""}`}
         >
           {/* Outer glowing lime border (fill=none so it NEVER obscures the icon inside!) */}
           <path

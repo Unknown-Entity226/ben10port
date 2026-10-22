@@ -69,9 +69,24 @@ button {
 button:focus-visible,
 a:focus-visible,
 input:focus-visible,
-textarea:focus-visible {
+textarea:focus-visible,
+[role="button"]:focus-visible {
   outline: 2px solid var(--green);
   outline-offset: 3px;
+}
+
+.holo-sector:focus-visible {
+  stroke: var(--green-hot) !important;
+  stroke-width: 2.5px !important;
+  fill: rgba(163, 230, 53, 0.45) !important;
+}
+
+.holo-symbol:focus-visible {
+  filter: drop-shadow(0 0 8px var(--green));
+}
+
+.holo-active-panel-frame:focus-visible {
+  stroke: var(--green-hot) !important;
 }
 
 a {
@@ -3578,6 +3593,38 @@ a {
   color: var(--green);
   background: rgba(132, 204, 22, 0.16);
   box-shadow: 0 0 14px rgba(132, 204, 22, 0.35);
+}
+
+.mute-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line-bright);
+  background: rgba(18, 38, 26, 0.5);
+  color: #92bfa0;
+  padding: 4px 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.mute-toggle-btn:hover {
+  border-color: var(--green);
+  color: var(--green);
+  background: rgba(132, 204, 22, 0.16);
+  box-shadow: 0 0 14px rgba(132, 204, 22, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 .home-prompt--overlay {

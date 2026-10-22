@@ -11,3 +11,4 @@ export function relativeOffset(index, activeIndex) {
   if (offset < -count / 2) offset += count;
   return offset;
 }
+

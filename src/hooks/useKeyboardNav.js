@@ -28,13 +28,15 @@ export function useKeyboardNav({
       }
 
       const target = event.target;
-      const typing =
-        target instanceof HTMLElement &&
-        (target.isContentEditable ||
+      const isInteractive =
+        target instanceof Element &&
+        (target.closest?.('button, a, input, textarea, select, [role="button"]') ||
+          target.getAttribute?.("role") === "button" ||
+          (target instanceof HTMLElement && target.isContentEditable) ||
           ["INPUT", "TEXTAREA", "SELECT", "BUTTON", "A"].includes(
             target.tagName,
           ));
-      if (typing) return;
+      if (isInteractive) return;
       if (stage === "home") {
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();

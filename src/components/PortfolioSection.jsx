@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Volume2, VolumeX } from 'lucide-react';
+import { useState } from 'react';
 import { sectionIcons, sectionMeta } from '../data/portfolioData.js';
 import SidebarNav from './SidebarNav.jsx';
 import AboutSection from './sections/AboutSection.jsx';
@@ -8,6 +9,7 @@ import EducationSection from './sections/EducationSection.jsx';
 import ExperienceSection from './sections/ExperienceSection.jsx';
 import ProjectsSection from './sections/ProjectsSection.jsx';
 import SkillsSection from './sections/SkillsSection.jsx';
+import { isMuted, toggleMute } from '../utils/soundEffects.js';
 
 const sectionViews = {
   about: AboutSection,
@@ -28,6 +30,12 @@ export default function PortfolioSection({
   const Icon = sectionIcons[activeSection] || sectionIcons[selected.id];
   const ActiveView = sectionViews[activeSection] || AboutSection;
 
+  const [muted, setMutedState] = useState(isMuted);
+  function handleToggleMute() {
+    toggleMute();
+    setMutedState(isMuted());
+  }
+
   return (
     <motion.main
       className={`portfolio-page${isReturning ? ' portfolio-page--returning' : ''}`}
@@ -40,6 +48,18 @@ export default function PortfolioSection({
           <ArrowLeft size={15} />
           <span>BACK TO OMNITRIX</span>
         </button>
+        <div style={{ gridColumn: 3, justifySelf: 'end' }}>
+          <button
+            type="button"
+            className="mute-toggle-btn"
+            onClick={handleToggleMute}
+            title={muted ? "Unmute sound effects" : "Mute sound effects"}
+            aria-label={muted ? "Unmute sound effects" : "Mute sound effects"}
+            aria-pressed={muted}
+          >
+            {muted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+          </button>
+        </div>
       </header>
       <div className="portfolio-layout">
         <aside className="portfolio-rail">

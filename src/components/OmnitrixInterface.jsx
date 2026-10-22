@@ -1,13 +1,16 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
   ArrowRight,
+  Volume2,
+  VolumeX,
 } from "lucide-react";
 import { sectionIcons, sectionMeta } from "../data/portfolioData.js";
 import HologramPreview from "./HologramPreview.jsx";
 import OmnitrixModel from "./OmnitrixModel.jsx";
 import SidebarNav from "./SidebarNav.jsx";
+import { isMuted, toggleMute } from "../utils/soundEffects.js";
 
 export default function OmnitrixInterface({
   stage,
@@ -28,6 +31,12 @@ export default function OmnitrixInterface({
     (activeSection && sectionIcons[activeSection]) ||
     sectionIcons[selected?.id] ||
     (() => null);
+
+  const [muted, setMutedState] = useState(isMuted);
+  function handleToggleMute() {
+    toggleMute();
+    setMutedState(isMuted());
+  }
 
   function handleTouchStart(event) {
     if (isStandby) return;
@@ -94,6 +103,17 @@ export default function OmnitrixInterface({
               STANDBY
             </button>
           )}
+          <span className="topbar-status__divider">|</span>
+          <button
+            type="button"
+            className="mute-toggle-btn"
+            onClick={handleToggleMute}
+            title={muted ? "Unmute sound effects" : "Mute sound effects"}
+            aria-label={muted ? "Unmute sound effects" : "Mute sound effects"}
+            aria-pressed={muted}
+          >
+            {muted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+          </button>
         </div>
       </header>
       <section

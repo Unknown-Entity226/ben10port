@@ -1,5 +1,47 @@
 let audioContext;
 
+// ── Mute state ─────────────────────────────────────────────────────────────
+// Default: muted when the OS reports prefers-reduced-motion; otherwise on.
+const _prefersReducedMotion =
+  typeof window !== 'undefined' &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function _readMuted() {
+  try {
+    const stored = localStorage.getItem('omnitrix-muted');
+    if (stored !== null) return stored === 'true';
+  } catch {
+    // localStorage unavailable (private browsing, storage quota, etc.)
+  }
+  return _prefersReducedMotion; // default: muted if reduced-motion is set
+}
+
+function _writeMuted(value) {
+  try {
+    localStorage.setItem('omnitrix-muted', String(value));
+  } catch {
+    // ignore storage errors
+  }
+}
+
+let _muted = _readMuted();
+
+/** Returns the current muted state. */
+export function isMuted() {
+  return _muted;
+}
+
+/** Toggle or explicitly set the muted state; persists to localStorage. */
+export function setMuted(value) {
+  _muted = value;
+  _writeMuted(value);
+}
+
+export function toggleMute() {
+  setMuted(!_muted);
+}
+
+// ── Audio context ───────────────────────────────────────────────────────────
 function getAudioContext() {
   if (typeof window === 'undefined') return null;
   const AudioContextConstructor = window.AudioContext || window.webkitAudioContext;
@@ -10,6 +52,7 @@ function getAudioContext() {
 }
 
 export function playSound(name) {
+  if (_muted) return;
   const context = getAudioContext();
   if (!context) return;
   const presets = {

@@ -1,4 +1,4 @@
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, MotionConfig } from "framer-motion";
 import ActivationTransition from "./components/ActivationTransition.jsx";
 import IntroSequence from "./components/IntroSequence.jsx";
 import OmnitrixInterface from "./components/OmnitrixInterface.jsx";
@@ -21,6 +21,7 @@ export default function App() {
     omnitrix.stage === "section" || omnitrix.stage === "returning";
 
   return (
+    <MotionConfig reducedMotion="user">
     <div className="app-shell">
       <AnimatePresence mode="wait">
         {omnitrix.stage === "intro" && (
@@ -62,5 +63,6 @@ export default function App() {
         )}
       </AnimatePresence>
     </div>
+    </MotionConfig>
   );
 }
