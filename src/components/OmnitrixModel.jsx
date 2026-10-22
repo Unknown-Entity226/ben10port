@@ -52,7 +52,7 @@ export default function OmnitrixModel({
             : `Activate ${sectionMeta[activeIndex]?.name || "section"}`
         }
       >
-        {isStandby && <span className="home-core-beacon" />}
+        {isStandby}
       </button>
     </motion.div>
   );
