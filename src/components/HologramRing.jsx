@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { sectionMeta } from "../data/portfolioData.js";
+import { readRingRotation } from "../utils/omnitrixStorage.js";
 
 function relativeOffset(index, activeIndex) {
   const count = sectionMeta.length;
@@ -106,7 +107,9 @@ export default function HologramRing({
   isStandby = false,
 }) {
   const prevIndexRef = useRef(activeIndex);
-  const [rotationAngle, setRotationAngle] = useState(0);
+  const [rotationAngle, setRotationAngle] = useState(() =>
+    readRingRotation(sectionMeta[activeIndex]?.id || sectionMeta[0].id),
+  );
 
   // Maintain continuous smooth rotation angle
   useEffect(() => {

@@ -1,25 +1,43 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { isSectionId, sectionMeta } from "../data/portfolioData.js";
 import { playSound } from "../utils/soundEffects.js";
+import {
+  readOmnitrixState,
+  saveOmnitrixSection,
+} from "../utils/omnitrixStorage.js";
 
 function initialState() {
   const hash =
     typeof window === "undefined" ? "" : window.location.hash.slice(1);
-  return isSectionId(hash)
-    ? { stage: "section", section: hash }
-    : { stage: "home", section: "about" };
+  const stored = readOmnitrixState();
+  return {
+    stage: isSectionId(hash) ? "section" : "home",
+    section: isSectionId(hash)
+      ? hash
+      : stored?.sectionHologram || "about",
+  };
 }
 
 export function useOmnitrixState() {
-  const initial = useRef(initialState());
-  const [stage, setStage] = useState(initial.current.stage);
-  const [activeSection, setActiveSection] = useState(initial.current.section);
+  const [initial] = useState(initialState);
+  const [stage, setStage] = useState(initial.stage);
+  const [activeSection, setActiveSection] = useState(initial.section);
   const timer = useRef(null);
   const activeIndex = Math.max(
     0,
     sectionMeta.findIndex((item) => item.id === activeSection),
   );
   const isLocked = stage === "activating" || stage === "returning";
+
+  const selectSection = useCallback((section) => {
+    if (!isSectionId(section)) return;
+    setActiveSection(section);
+    saveOmnitrixSection(section);
+  }, []);
+
+  useEffect(() => {
+    saveOmnitrixSection(activeSection);
+  }, [activeSection]);
 
   useEffect(() => () => window.clearTimeout(timer.current), []);
 
@@ -30,7 +48,7 @@ export function useOmnitrixState() {
 
       const hash = window.location.hash.slice(1);
       if (isSectionId(hash)) {
-        setActiveSection(hash);
+        selectSection(hash);
         setStage("section");
       } else if (hash === "home" || !hash) {
         setStage("home");
@@ -44,7 +62,7 @@ export function useOmnitrixState() {
       window.removeEventListener("hashchange", syncRoute);
       window.removeEventListener("popstate", syncRoute);
     };
-  }, []);
+  }, [selectSection]);
 
   const skipIntro = useCallback(
     () => setStage((current) => (current === "intro" ? "navigation" : current)),
@@ -55,18 +73,17 @@ export function useOmnitrixState() {
     (direction) => {
       if (stage !== "navigation" && stage !== "preview") return;
       const delta = direction === "next" ? 1 : -1;
-      setActiveSection((current) => {
-        const index = sectionMeta.findIndex((item) => item.id === current);
-        return sectionMeta[
-          (index + delta + sectionMeta.length) % sectionMeta.length
-        ].id;
-      });
+      const index = sectionMeta.findIndex((item) => item.id === activeSection);
+      const nextSection = sectionMeta[
+        (index + delta + sectionMeta.length) % sectionMeta.length
+      ].id;
+      selectSection(nextSection);
       playSound("switch");
       window.clearTimeout(timer.current);
       setStage("preview");
       timer.current = window.setTimeout(() => setStage("navigation"), 420);
     },
-    [stage],
+    [activeSection, selectSection, stage],
   );
 
   const writeHash = (section) => {
@@ -87,12 +104,12 @@ export function useOmnitrixState() {
       }
       window.clearTimeout(timer.current);
       timer.current = null;
-      setActiveSection(section);
+      selectSection(section);
       setStage("section");
       writeHash(section);
       playSound("click");
     },
-    [stage],
+    [selectSection, stage],
   );
 
   const activateSection = useCallback(() => {
