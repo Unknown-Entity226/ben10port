@@ -1,6 +1,6 @@
 import { MapPin } from 'lucide-react';
 import { profile } from '../../data/portfolioData.js';
-import profileImage from '../../assets/image.png';
+import profileImage from '../../assets/profile.webp';
 export default function AboutSection() {
   return (
     <div className="about-view">

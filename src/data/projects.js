@@ -1,9 +1,9 @@
-import volumebooster from '../assets/volumebooster.png';
+import volumebooster from '../assets/volumebooster.webp';
 import cropguide from '../assets/cropguide.png';
-import civic from '../assets/civic.png'
-import akhada from '../assets/akhada.png'
-import leetcode from '../assets/leetcodeicon.png'
-import crypt from "../assets/crypt.png"
+import civic from '../assets/civic.webp'
+import akhada from '../assets/akhada.webp'
+import leetcode from '../assets/leetcodeicon.webp'
+import crypt from "../assets/crypt.webp"
 
 export const projects = [
     {

@@ -1,8 +1,8 @@
-import frontendIcon from '../assets/frontend.png';
-import backendIcon from '../assets/backend.png';
-import aiDataIcon from '../assets/ai.png';
-import toolsIcon from '../assets/tools.png';
-import coreIcon from '../assets/core.png';
+import frontendIcon from '../assets/frontend.webp';
+import backendIcon from '../assets/backend.webp';
+import aiDataIcon from '../assets/ai.webp';
+import toolsIcon from '../assets/tools.webp';
+import coreIcon from '../assets/core.webp';
 
 export const skills = [
     {

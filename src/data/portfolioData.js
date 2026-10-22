@@ -1,11 +1,11 @@
 import {
   BookOpen, BriefcaseBusiness, Code2, FolderKanban, Mail, UserRound,
 } from 'lucide-react';
-import githubLogo from '../assets/github_logo.png';
-import linkedinLogo from '../assets/linkedin_logo.png';
-import leetcodeIcon from '../assets/leetcodeicon.png';
-import instaIcon from '../assets/insta.png';
-import gmailIcon from '../assets/gmail.png';
+import githubLogo from '../assets/github_logo.webp';
+import linkedinLogo from '../assets/linkedin_logo.webp';
+import leetcodeIcon from '../assets/leetcodeicon.webp';
+import instaIcon from '../assets/insta.webp';
+import gmailIcon from '../assets/gmail.webp';
 import { projects } from './projects.js';
 import { skills } from './skills.js';
 import { experienceData } from './experience.js';
